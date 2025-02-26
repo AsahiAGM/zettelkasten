@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zettelkasten", "Zettelkasten.csproj", "{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14677BCE-3C59-4DC7-B640-4D2E4C46E8FC}
+	EndGlobalSection
+EndGlobal
