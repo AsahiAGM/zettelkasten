@@ -1,0 +1,18 @@
+# ビルド成果物（Git管理不要）
+bin/
+obj/
+# NuGetパッケージ（ローカルキャッシュ）
+*.nupkg
+packages/
+# 一時ファイル
+.vs/
+*.user
+*.suo
+*.cache
+*.db
+# macOS用の不要ファイル
+.DS_Store
+# Windows用の不要ファイル
+Thumbs.db
+# 開発ログ
+pulish_log/
