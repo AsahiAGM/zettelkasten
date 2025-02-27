@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Zettelkasten")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+e833770fbdf1d9086413fbb69e2dbc82e90be8b6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+176987bbfd5feee9a25987fc815de554314d5066")]
 [assembly: System.Reflection.AssemblyProductAttribute("Zettelkasten")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Zettelkasten")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

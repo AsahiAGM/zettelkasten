@@ -7,8 +7,8 @@
     Shell.FlyoutBehavior="Disabled"
     Title="Zettelkasten">
 
-    <ShellContent
-        Title="Home"
+    <!-- Title="Home" -->
+    <ShellContent        
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
