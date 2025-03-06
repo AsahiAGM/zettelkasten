@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|solutionrelative:mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|f:\\applicationfactory\\zettelkasten\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|f:\\applicationfactory\\zettelkasten\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|solutionrelative:appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|f:\\applicationfactory\\zettelkasten\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|f:\\applicationfactory\\zettelkasten\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3149C405-B4B0-4CED-88DD-E7ED4AD846CD}|Zettelkasten.csproj|f:\\applicationfactory\\zettelkasten\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -26,34 +26,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "F:\\ApplicationFactory\\zettelkasten\\MainPage.xaml",
               "RelativeDocumentMoniker": "MainPage.xaml",
               "ToolTip": "F:\\ApplicationFactory\\zettelkasten\\MainPage.xaml",
               "RelativeToolTip": "MainPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-27T02:44:18.707Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.xaml",
-              "DocumentMoniker": "F:\\ApplicationFactory\\zettelkasten\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "F:\\ApplicationFactory\\zettelkasten\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-27T05:20:51.459Z",
-              "IsPinned": true,
+              "WhenOpened": "2025-03-06T07:32:08.534Z",
               "EditorCaption": ""
             },
             {
@@ -64,10 +49,9 @@
               "RelativeDocumentMoniker": "AppShell.xaml",
               "ToolTip": "F:\\ApplicationFactory\\zettelkasten\\AppShell.xaml",
               "RelativeToolTip": "AppShell.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-27T05:20:37.665Z",
-              "IsPinned": true,
+              "WhenOpened": "2025-03-06T06:53:19.528Z",
               "EditorCaption": ""
             },
             {
@@ -78,9 +62,22 @@
               "RelativeDocumentMoniker": "MainPage.xaml.cs",
               "ToolTip": "F:\\ApplicationFactory\\zettelkasten\\MainPage.xaml.cs",
               "RelativeToolTip": "MainPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T02:45:11.559Z",
+              "WhenOpened": "2025-03-06T04:53:25.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "F:\\ApplicationFactory\\zettelkasten\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "AppShell.xaml.cs",
+              "ToolTip": "F:\\ApplicationFactory\\zettelkasten\\AppShell.xaml.cs",
+              "RelativeToolTip": "AppShell.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T04:53:22.449Z",
               "EditorCaption": ""
             }
           ]

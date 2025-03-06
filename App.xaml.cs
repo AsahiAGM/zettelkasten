@@ -1,4 +1,6 @@
-﻿namespace Zettelkasten
+﻿using System.Diagnostics;
+
+namespace Zettelkasten
 {
     public partial class App : Application
     {

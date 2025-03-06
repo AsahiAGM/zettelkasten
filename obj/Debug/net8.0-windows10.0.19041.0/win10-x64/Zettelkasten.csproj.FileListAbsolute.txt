@@ -16,6 +16,7 @@ F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x6
 F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Options.dll
 F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Primitives.dll
 F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Graphics.Canvas.Interop.dll
+F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.IO.RecyclableMemoryStream.dll
 F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Maui.Controls.Compatibility.dll
 F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Maui.Controls.dll
 F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Maui.Controls.Xaml.dll
@@ -143,11 +144,14 @@ F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x6
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico
+F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\reference.scale-100.txt
+F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\icon_plus.scale-100.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png
+F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\icon_menu.scale-100.png
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauiimage.stamp
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauiimage.outputs
 F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.AssemblyInfoInputs.cache
