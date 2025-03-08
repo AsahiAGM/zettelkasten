@@ -1,4 +1,6 @@
-﻿namespace Zettelkasten
+﻿using System.Diagnostics;
+
+namespace Zettelkasten
 {
     public partial class AppShell : Shell
     {
@@ -12,7 +14,7 @@
         {
             // 新しいカードを生成する処理をここに記述
             //DisplayAlert("新規カード", "新しいカードが生成されました。", "OK");
-            TableComponent.MainPage.GenerateCard();
+            TableComponent.MainPage?.GenerateCard();
         }
 
         // メニューボタンがクリックされたときの処理
