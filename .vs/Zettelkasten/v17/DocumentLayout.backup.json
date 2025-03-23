@@ -46,7 +46,7 @@
               "RelativeToolTip": "MainPage.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-08T07:25:39.479Z",
+              "WhenOpened": "2025-03-17T07:13:19.928Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -60,7 +60,7 @@
               "RelativeToolTip": "AppShell.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-08T07:25:38.242Z",
+              "WhenOpened": "2025-03-17T07:13:11.009Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -74,7 +74,7 @@
               "RelativeToolTip": "App.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-08T07:25:25.992Z",
+              "WhenOpened": "2025-03-17T07:11:29.814Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -86,9 +86,9 @@
               "RelativeDocumentMoniker": "MainPage.xaml.cs",
               "ToolTip": "F:\\ApplicationFactory\\zettelkasten\\MainPage.xaml.cs",
               "RelativeToolTip": "MainPage.xaml.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAOcAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADMAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T07:26:57.803Z",
+              "WhenOpened": "2025-03-17T07:14:22.963Z",
               "EditorCaption": ""
             },
             {
@@ -99,9 +99,9 @@
               "RelativeDocumentMoniker": "AppShell.xaml.cs",
               "ToolTip": "F:\\ApplicationFactory\\zettelkasten\\AppShell.xaml.cs",
               "RelativeToolTip": "AppShell.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T07:25:51.774Z",
+              "WhenOpened": "2025-03-17T07:14:00.461Z",
               "EditorCaption": ""
             },
             {
@@ -114,7 +114,7 @@
               "RelativeToolTip": "App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T07:25:49.024Z",
+              "WhenOpened": "2025-03-17T07:13:34.053Z",
               "EditorCaption": ""
             }
           ]

@@ -169,7 +169,7 @@ namespace Zettelkasten
                         EditorDictionary.Add(_graphicsView, textbox);
                         VisualComponentDictionary.Add(textbox, 1);
                     });
-                  */           
+                */           
 
                 // Invalidate
                 ZIndexMove(graph);
@@ -271,12 +271,16 @@ namespace Zettelkasten
             // タッチしたカード以外をのvalueを+1し、タッチしたカードは1(最小値)にする
             foreach(var key in VisualComponentDictionary.Keys.ToList())
             {
-                if( key == touchCard )
+                Debug.WriteLine($"pairTb is null :{ pairTb is null }");               
+
+                if ( key == touchCard )
                 {
                     VisualComponentDictionary[key] = 1;
-                    if(EditorDictionary.ContainsKey(touchCard))
+                    Debug.WriteLine($"EditorDictionary.ContainsKey(touchCard) :{EditorDictionary.ContainsKey(touchCard)}");
+                    if (EditorDictionary.ContainsKey(touchCard))
                     {
-                        VisualComponentDictionary[EditorDictionary[touchCard]] = 0;
+                        //Debug.WriteLine($"{ EditorDictionary[touchCard] } = {VisualComponentDictionary[EditorDictionary[touchCard]]}");
+                        VisualComponentDictionary[ EditorDictionary[touchCard] ] = 0;
                         pairTb = EditorDictionary[touchCard];
                     }                   
                 }
@@ -287,20 +291,24 @@ namespace Zettelkasten
                         VisualComponentDictionary[key] = VisualComponentDictionary[key] + 2;
                         Debug.WriteLine($" plus ");
                     }                   
-                }
+                }                           
+            }
 
+            // 再描画
+            foreach(var key in VisualComponentDictionary.Keys.ToList())
+            {
                 // 大きいほど一番上にカードが来る ので、ZIndex = int.MaxValue - dictionary.value
-                if( MainPage is not null )
+                if (MainPage is not null)
                 {
                     var gridContent = MainPage.Content as Grid;
                     var view = gridContent?.Children.FirstOrDefault(x => x == key) as View;
 
-                    if( view is not null )
+                    if (view is not null)
                     {
                         view.ZIndex = int.MaxValue - VisualComponentDictionary[key];
                         //Debug.WriteLine($"◆---Index [{int.MaxValue - VisualComponentDictionary[key]}]. Key is [{view}]. ");
-                    }                   
-                }               
+                    }
+                }
             }
         }
     }
@@ -385,6 +393,67 @@ namespace Zettelkasten
             Debug.WriteLine($"◆--- MainPage Height: {height}, Width: {width}");
         }
     }
+
+    public class FlashCardProperty
+    {
+        /* 
+         * 
+         * 
+         */
+        public int TextFontSize { get; set; } = 12;
+        public Color TextFontColor { get; set; } = Colors.Black;
+        public int TagFontSize { get; set; } = 8;
+        public Color TagFontColor { get; set; } = Colors.Black;
+        public float CardHeight { get; set; } = 350f;
+        public float CardWidth { get; set; } = 150f;
+
+
+
+        public FlashCardProperty() { }
+    }
+
+    public class FlashCardFactory
+    {
+        /*
+         * MainPage.Component は Grid であり、IViewインスタンスを都度.Addする必要がある。
+         * ・カードとタグの GraphicsView および Entry を１個ずつ順に出力する
+         * ・出力したカードとタグの構造体を Dictionary で管理。ZIndex を振り分けるためのレイヤーレベルを辞書化する
+         * ・singleton
+         * ・
+         * ・       
+         */
+        public Dictionary<FlashCard, int> Layer = new();
+
+        public static FlashCardFactory _instance;
+        public FlashCardFactory Instance => _instance;
+        FlashCardFactory()
+        {
+            _instance = this;
+        }
+    }
+
+    public class FlashCard
+    {
+        /*
+         * FlashCard のコンポーネントを管理するクラス
+         * 
+         *
+         */
+        /// <summary>
+        /// 所属しているGrid
+        /// </summary>
+        private List<IView> ParentGrid;
+        /// <summary>
+        /// 単語カードの参照
+        /// </summary>
+        private GraphicsView CardObject;
+        public FlashCard(List<IView> _gridChildren)
+        {
+            ParentGrid = _gridChildren;           
+            
+        }
+    }
+
     public class TestObj : IDrawable
     {
         public TestObj() 
@@ -430,58 +499,59 @@ namespace Zettelkasten
             canvas.DrawRoundedRectangle(dirtyRect.X, dirtyRect.Y, dirtyRect.Width-OFFSET, dirtyRect.Height-OFFSET, _corner-1f);
             
             // 削除ボタン
-            float size = 10f;// カードの大きさに応じた比率の方が良いが、プラットフォームによって大きさは異なる為調整は必要
-            float padding = 5f;
-            float deleteButtonX = dirtyRect.Right - size - padding - 3f;
-            float deleteButtonY = dirtyRect.Top;
-            canvas.FillColor = Colors.White;
-            canvas.FillRectangle(deleteButtonX,deleteButtonY, size, size);
-            canvas.FontColor = Colors.Black;
-            canvas.FontSize = 14;
-            canvas.DrawString(
-                "×",
-                deleteButtonX,
-                deleteButtonY,
-                size+padding,
-                size+padding,
-                HorizontalAlignment.Left,
-                VerticalAlignment.Top
-            );
-
+                float size = 10f;// カードの大きさに応じた比率の方が良いが、プラットフォームによって大きさは異なる為調整は必要
+                float padding = 5f;
+                float deleteButtonX = dirtyRect.Right - size - padding - 3f;
+                float deleteButtonY = dirtyRect.Top;
+                canvas.FillColor = Colors.White;
+                canvas.FillRectangle(deleteButtonX,deleteButtonY, size, size);
+                canvas.FontColor = Colors.Black;
+                canvas.FontSize = 14;
+                canvas.DrawString(
+                    "×",
+                    deleteButtonX,
+                    deleteButtonY,
+                    size+padding,
+                    size+padding,
+                    HorizontalAlignment.Left,
+                    VerticalAlignment.Top
+                );
+            /*
             // テキストボックス展開ボタン
-            size = 10f;// カードの大きさに応じた比率の方が良いが、プラットフォームによって大きさは異なる為調整は必要
-            padding = 1f;
-            float textButtonX = dirtyRect.Left + padding + 3f;
-            float textButtonY = dirtyRect.Top + padding;
-            canvas.FillColor = Colors.White;
-            canvas.FillRectangle(textButtonX, textButtonY, size, size);
-            canvas.FontColor = Colors.Black;
-            canvas.FontSize = 12;
-            canvas.DrawString(
-                "＋",
-                textButtonX,
-                textButtonY,
-                size + padding,
-                size + padding + 3f,
-                HorizontalAlignment.Left,
-                VerticalAlignment.Top
-            );
+                size = 10f;// カードの大きさに応じた比率の方が良いが、プラットフォームによって大きさは異なる為調整は必要
+                padding = 1f;
+                float textButtonX = dirtyRect.Left + padding + 3f;
+                float textButtonY = dirtyRect.Top + padding;
+                canvas.FillColor = Colors.White;
+                canvas.FillRectangle(textButtonX, textButtonY, size, size);
+                canvas.FontColor = Colors.Black;
+                canvas.FontSize = 12;
+                canvas.DrawString(
+                    "＋",
+                    textButtonX,
+                    textButtonY,
+                    size + padding,
+                    size + padding + 3f,
+                    HorizontalAlignment.Left,
+                    VerticalAlignment.Top
+                );           
 
             // テキスト
-            padding = 20f;
-            float textX = dirtyRect.Left + 7f;
-            float textY = textButtonY + padding;
-            canvas.FontColor = Colors.Black;
-            canvas.FontSize = 12;
-            canvas.DrawString(
-                Content,
-                textX,
-                textY,
-                dirtyRect.Width - 40f,
-                dirtyRect.Height - 40f,
-                HorizontalAlignment.Left,
-                VerticalAlignment.Top
-            );
+                padding = 20f;
+                float textX = dirtyRect.Left + 7f;
+                float textY = textButtonY + padding;
+                canvas.FontColor = Colors.Black;
+                canvas.FontSize = 12;
+                canvas.DrawString(
+                    Content,
+                    textX,
+                    textY,
+                    dirtyRect.Width - 40f,
+                    dirtyRect.Height - 40f,
+                    HorizontalAlignment.Left,
+                    VerticalAlignment.Top
+                );
+            */
 
             // 影を解除（次の描画に影をつけないため）
             canvas.SetShadow(SizeF.Zero, 0, Colors.Transparent);
