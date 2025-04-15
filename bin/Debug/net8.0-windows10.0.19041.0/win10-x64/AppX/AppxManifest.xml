@@ -7,7 +7,7 @@
 
     パッケージ マニフェスト ファイルの詳細については、http://go.microsoft.com/fwlink/?LinkID=241727 を参照してください
   -->
-  <Identity Name="com.companyname.zettelkasten" Publisher="CN=User Name" Version="1.0.0.1" ProcessorArchitecture="x64" />
+  <Identity Name="com.companyname.zettelkasten" Publisher="CN=Asahi" Version="0.0.2.0" ProcessorArchitecture="x64" />
   <mp:PhoneIdentity PhoneProductId="902806B5-6C67-4254-B9A6-ECFF586FF4D6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Zettelkasten</DisplayName>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zettelkasten</name>
+    </assembly>
+    <members>
+        <member name="F:Zettelkasten.FlashCard.ParentGrid">
+            <summary>
+            所属しているGrid
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.FlashCard.CardObject">
+            <summary>
+            単語カードの参照
+            </summary>
+        </member>
+    </members>
+</doc>
