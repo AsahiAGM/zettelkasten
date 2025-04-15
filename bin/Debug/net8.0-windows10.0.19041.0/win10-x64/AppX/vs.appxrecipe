@@ -9,7 +9,7 @@
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>com.companyname.zettelkasten</PackageIdentityName>
-    <PackageIdentityPublisher>CN=User Name</PackageIdentityPublisher>
+    <PackageIdentityPublisher>CN=Asahi</PackageIdentityPublisher>
     <IntermediateOutputPath>F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,36 +18,36 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>4370D03CAACA62DCCCAF95C95E8E1C3CDED95FA07E8494CFB39BE505E419E4F6</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>com.companyname.zettelkasten_1.0.0.1_x64__9zz4h110yvjzm</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>com.companyname.zettelkasten_9zz4h110yvjzm!App</RegisteredUserModeAppID>
+    <RegisteredManifestChecksum>0BD8247093A3643399939011D87F3751321D01FC3D85374C52C8D13B515F3E36</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>com.companyname.zettelkasten_0.0.2.0_x64__qzefmw34kenn2</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>com.companyname.zettelkasten_qzefmw34kenn2!App</RegisteredUserModeAppID>
     <RegisteredPackageID>com.companyname.zettelkasten</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=User Name</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.1</RegisteredVersion>
+    <RegisteredPackagePublisher>CN=Asahi</RegisteredPackagePublisher>
+    <RegisteredVersion>0.0.2.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-03-17T07:47:09.441</Modified>
+      <Modified>2025-04-14T05:10:39.766</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-03-08T07:31:44.884</Modified>
+      <Modified>2025-04-14T05:00:02.314</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.runtimeconfig.json">
       <PackagePath>Zettelkasten.runtimeconfig.json</PackagePath>
-      <Modified>2025-03-08T07:31:43.862</Modified>
+      <Modified>2025-04-14T04:59:56.236</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.dll">
       <PackagePath>Zettelkasten.dll</PackagePath>
-      <Modified>2025-03-17T07:47:05.051</Modified>
+      <Modified>2025-04-14T05:10:37.485</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>Zettelkasten.exe</PackagePath>
-      <Modified>2025-03-17T07:47:05.441</Modified>
+      <Modified>2025-04-14T05:10:37.672</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -299,7 +299,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.deps.json">
       <PackagePath>Zettelkasten.deps.json</PackagePath>
-      <Modified>2025-03-08T07:31:43.471</Modified>
+      <Modified>2025-04-14T04:59:55.829</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.34\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

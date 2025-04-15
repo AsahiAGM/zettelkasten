@@ -9,28 +9,219 @@ using Microsoft.Maui.Dispatching;
 
 namespace Zettelkasten
 {
+    /// <summary>
+    /// UIとイベント
+    /// </summary>
+    public partial class MainPage : ContentPage
+    {
+        internal Anchor _dragAnchor;
+
+        public MainPage()
+        {
+            Debug.WriteLine($"◆ MainPage Constructor");
+
+            InitializeComponent();// initialize and read XAML. This generate when initializing and belong "obj".
+
+            // init
+            FlashCardFactory.MainPage = this;           
+
+            _dragAnchor = new Anchor(0, 0);
+            Content = new Grid();
+        }
+        /// <summary>
+        /// MainPageが初期化されたのちに一度だけ呼ばれるメソッド
+        /// </summary>
+        /// <param name="args"></param>
+        protected override void OnNavigatedTo(NavigatedToEventArgs args)
+        {
+            base.OnNavigatedTo(args);
+
+            var mainPageContent = this.Content as Grid;
+
+            if (mainPageContent is null)
+            {
+                Debug.WriteLine($"◆[ERROR] MainPage.OnNavigatedTo() : MainPage content is null.");
+                return;
+            }
+
+            TableComponent.MainPageContent = mainPageContent.Children as List<IView>;
+            Debug.WriteLine($"content is null [{TableComponent.MainPageContent is null}]");
+        }
+
+        // ドラッグ更新時に呼ばれるメソッド
+        internal void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
+        {
+            Debug.WriteLine($"◆ MainPage.OnPanUpdated");
+            //Debug.WriteLine($"◆--- sender :{sender.GetType().Name}");
+            //Debug.WriteLine($"◆--- anchor({_dragAnchor.StartX},{_dragAnchor.StartY})");
+
+            // cast
+            GraphicsView? rectangle = sender as GraphicsView;
+            if (rectangle == null) return;
+
+            float FIX_LIMIT = 5f;
+            float LimitHeight = ((float)Height / 2) - ((float)rectangle.Height / 2) - FIX_LIMIT;
+            float LimitWidth = ((float)Width / 2) - ((float)rectangle.Width / 2) - FIX_LIMIT;
+
+            if (e.StatusType == GestureStatus.Started)
+            {
+                // start position init
+                _dragAnchor = new Anchor(rectangle.TranslationX, rectangle.TranslationY);
+                //Debug.WriteLine($"◆--- MainPage Size({Width},{Height})");
+                //Debug.WriteLine($"◆--- anchor({_dragAnchor.StartX},{_dragAnchor.StartY})");
+                return;
+            }
+
+            // GestureStatus が Running の場合に位置を更新
+            if (e.StatusType == GestureStatus.Running)
+            {
+                // ドラッグスタート位置からドラッグ後の位置を出力
+                //Debug.WriteLine($"◆--- rectangle total moving [before] ({rectangle.TranslationX},{rectangle.TranslationY})");
+                //Debug.WriteLine($"◆--- rectangle size ({rectangle.Width},{rectangle.Height})");
+                var nextX = (float)_dragAnchor.StartX + (float)e.TotalX;
+                var nextY = (float)_dragAnchor.StartY + (float)e.TotalY;
+
+                // 矩形がアプリケーションの外に出るようなドラッグは受け付けない
+                if (nextY > LimitHeight) nextY = LimitHeight;
+                if (nextY < -1 * LimitHeight) nextY = -1 * LimitHeight;
+                if (nextX > LimitWidth) nextX = LimitWidth;
+                if (nextX < -1 * LimitWidth) nextX = -1 * LimitWidth;
+
+                // 移動後の座標をセット
+                rectangle.TranslationX = nextX;
+                rectangle.TranslationY = nextY;
+                if (TableComponent.FlashCardDictionary.ContainsKey(rectangle))
+                {
+                    TableComponent.FlashCardDictionary[rectangle].TranslationX = nextX;
+                    TableComponent.FlashCardDictionary[rectangle].TranslationY = nextY + 5f;
+                }
+
+                //Debug.WriteLine($"◆--- rectangle total moving [after] ({rectangle.TranslationX},{rectangle.TranslationY})");
+
+                // 再描画を要求
+                rectangle.Invalidate();
+            }
+        }
+        private void MainPage_SizeChanged(object? sender, EventArgs e)
+        {
+            //Debug.WriteLine($"◆ MainPage.MainPage_SizeChanged");
+
+            // この時点で Height および Width は有効な値になります
+            double height = this.Height;
+            double width = this.Width;
+
+            //Debug.WriteLine($"◆--- MainPage Height: {height}, Width: {width}");
+            
+        }
+
+        /// <summary>
+        /// AppShellから呼ばれるカード生成メソッド<br/>
+        /// </summary>
+        public static void GenerateCard()
+        {
+            var newCard = FlashCardFactory.GererateCard();
+            TableComponent.CurrentTable.FlashCardDictionary.Add(
+                newCard.Cardobject,
+                newCard
+                );
+        }
+    }
+
+    /// <summary>
+    /// ユーザーがインスタンスしたデータ(SQLite実装後はそちらに委譲)
+    /// </summary>
     public static class TableComponent
     {
-        public static int GenerateCardCount { get; private set; }
-        public static MainPage? MainPage { get; set; }// Initiated MainPage Constructor.
+        /// <summary>
+        /// 表示中のテーブル
+        /// </summary>
+        public static Table CurrentTable { get; private set; } = new();
+        /// <summary>
+        /// 作成したテーブルの辞書
+        /// </summary>
+        public static Dictionary<int, Table> TableDictionary = new();
+        /// <summary>
+        /// MainPageのContentを保持するリスト<br/>
+        /// </summary>
+        public static List<IView> MainPageContent = new();
 
-        public static Dictionary<View, int> VisualComponentDictionary = new();
-        public static Dictionary<GraphicsView, Editor> EditorDictionary = new();
-        public static GraphicsView? GenerateCard(this MainPage mainPage)
+        // property
+        public static Dictionary<View, int> VisualComponentDictionary => CurrentTable.VisualComponentDictionary;
+        public static Dictionary<GraphicsView,FlashCard> FlashCardDictionary => CurrentTable.FlashCardDictionary;
+        public static int GenerateCardCount => CurrentTable.GenerateCardCount;
+
+        /// <summary>
+        /// 編集するテーブルを変更する<br/>
+        /// </summary>
+        /// <param name="tableId"></param>
+        public static void ChangeTable(int tableId)
         {
-            Debug.WriteLine($"◆ TableComponent.GenerateCard()");
-            GenerateCardCount++;
+            CurrentTable = TableDictionary[tableId];
+
+            if (CurrentTable.FlashCardDictionary.Count() > 0)
+            {
+                MainPageContent.Clear();
+
+                var cards = CurrentTable.FlashCardDictionary.Values.ToList();
+                foreach (var card in cards)
+                {
+                    MainPageContent.Add(card.Cardobject);
+                    MainPageContent.Add(card.Textbox);
+                }
+            }
+            else
+            {
+                MainPageContent.Clear();
+                Debug.WriteLine($"◆[ERROR] TableComponent.ChangeTable() : No table data. TableId[{tableId}]");
+            }
+        }
+    }
+
+    /// <summary>
+    /// カードとテキストのコンテナクラス
+    /// </summary>
+    public class Table
+    {
+        /// <summary>
+        /// 生成したFlashCardの累計数
+        /// </summary>
+        public int GenerateCardCount { get; set; } = 0;
+        /// <summary>
+        /// 生成したFlashCardの辞書<br/>
+        /// Key : GraphicsView<br/>
+        /// </summary>
+        public Dictionary<GraphicsView, FlashCard> FlashCardDictionary = new();
+        /// <summary>
+        /// 生成したFlashCardのZIndex
+        /// </summary>
+        public Dictionary<View, int> VisualComponentDictionary = new();
+    }
+
+    /// <summary>
+    /// 単語カード生成クラス<br/>
+    ///  ・MainPage.Component は Grid であり、IViewインスタンスを都度.Addする必要がある。<br/>
+    ///  ・カードとタグの GraphicsView および Entry を１個ずつ順に出力する<br/>
+    ///  ・出力したカードとタグの構造体を Dictionary で管理。ZIndex を振り分けるためのレイヤーレベルを辞書化する
+    /// </summary>
+    public static class FlashCardFactory
+    {
+        public static MainPage MainPage { get; set; }
+
+        public static FlashCard GererateCard()
+        {
+            //Debug.WriteLine($"◆ TableComponent.GenerateCard()");
+            //TableComponent.GenerateCardCount++;
 
             // grid reference
-            var grid = mainPage.Content as Grid;
+            var grid = MainPage.Content as Grid;
             if (grid is null)
             {
-                Debug.WriteLine($"◆[ERROR] reference missing. MainPage content don't have 'Grid'.");
+                //Debug.WriteLine($"◆[ERROR] reference missing. MainPage content don't have 'Grid'.");
                 return null;
             }
 
             // init
-            var _drawable = new DraggableGraphics(GenerateCardCount);
+            var _drawable = new DraggableGraphics(TableComponent.GenerateCardCount);
             var _graphicsView = new GraphicsView
             {
                 Drawable = _drawable,
@@ -41,24 +232,24 @@ namespace Zettelkasten
             // application windows resize event hundler
             _graphicsView.SizeChanged += (s, e) =>
             {
-                Debug.WriteLine($"◆ GraphicsView size changes");
-                Debug.WriteLine($"◆--- GraphicsView size : ({_graphicsView.Height},{_graphicsView.Width})");
-                Debug.WriteLine($"◆--- GraphicsView position : ({_graphicsView.Y},{_graphicsView.X})");
+                //Debug.WriteLine($"◆ GraphicsView size changes");
+                //Debug.WriteLine($"◆--- GraphicsView size : ({_graphicsView.Height},{_graphicsView.Width})");
+                //Debug.WriteLine($"◆--- GraphicsView position : ({_graphicsView.Y},{_graphicsView.X})");
 
                 // Invalidate
                 _graphicsView.IsVisible = true;
                 MainThread.InvokeOnMainThreadAsync(() => _graphicsView.Invalidate());
 
                 // span Textbox                
-                var textbox = EditorDictionary[_graphicsView];
-                textbox.WidthRequest = _graphicsView.Width - 10f;
-                textbox.HeightRequest = _graphicsView.Height - 20f;
+                var card = TableComponent.FlashCardDictionary[_graphicsView];
+                card.Textbox.WidthRequest = _graphicsView.Width - 10f;
+                card.Textbox.HeightRequest = _graphicsView.Height - 20f;
             };
 
             // application windows touch event hundler
             _graphicsView.StartInteraction += (s, e) =>
             {
-                Debug.WriteLine($"◆ Touch Card obj");
+                //Debug.WriteLine($"◆ Touch Card obj");
                 var graph = s as GraphicsView;
                 if (graph is null) return;
                 var draggable = graph.Drawable as DraggableGraphics;
@@ -67,11 +258,11 @@ namespace Zettelkasten
                 // debug position
                 var touchX = e.Touches[0].X + graph.TranslationX; // タッチされたX座標
                 var touchY = e.Touches[0].Y + graph.TranslationY; // タッチされたY座標
-                Debug.WriteLine($"◆--- touched position : ({touchX},{touchY})");
+                                                                  //Debug.WriteLine($"◆--- touched position : ({touchX},{touchY})");
 
                 // ZIndex realignment
-                ZIndexMove(graph);
-                Debug.WriteLine($"◆--- GraphicsView touched : No.({draggable.Number}) value[{VisualComponentDictionary[graph]}]");
+                ZIndexMove(MainPage, graph);
+                //Debug.WriteLine($"◆--- GraphicsView touched : No.({draggable.Number}) value[{TableComponent.VisualComponentDictionary[graph]}]");
 
                 // deletebutton
                 float size = 8f;
@@ -98,18 +289,20 @@ namespace Zettelkasten
                 // Delete Card Button
                 if (touchX >= buttonArea.Left && touchX <= buttonArea.Right && touchY >= buttonArea.Top && touchY <= buttonArea.Bottom)
                 {
-                    Debug.WriteLine($"◆!!!--- touched delete button");
+                    //Debug.WriteLine($"◆!!!--- touched delete button");
 
-                    VisualComponentDictionary.Remove(graph);
+                    TableComponent.VisualComponentDictionary.Remove(graph);
 
                     grid.Children.Remove(graph);
-                    VisualComponentDictionary.Remove(graph);
+                    TableComponent.VisualComponentDictionary.Remove(graph);
 
-                    if (EditorDictionary.ContainsKey(graph))
+                    if (TableComponent.FlashCardDictionary.ContainsKey(graph))
                     {
-                        grid.Children.Remove(EditorDictionary[graph]);
-                        VisualComponentDictionary.Remove(EditorDictionary[graph]);
-                        EditorDictionary.Remove(graph);
+                        var card = TableComponent.FlashCardDictionary[graph];
+
+                        grid.Children.Remove( card.Cardobject );
+                        TableComponent.VisualComponentDictionary.Remove( card.Cardobject );
+                        TableComponent.FlashCardDictionary.Remove(graph);
                     }
 
                     graph.Drawable = null;
@@ -119,98 +312,48 @@ namespace Zettelkasten
                     return;
                 }
 
-                /*
-                // Add Textbox Button
-                if (touchX >= textboxButton.Left && touchX <= textboxButton.Right && touchY >= textboxButton.Top && touchY <= textboxButton.Bottom)
-                {
-                    Debug.WriteLine($"◆!!!--- generate textbox");
-                    var textbox = new Editor()
-                    {
-                        Placeholder = "initialize textbox",
-                        TranslationX = graph.TranslationX,
-                        TranslationY = graph.TranslationY + padding,
-                        WidthRequest = graph.Width - 10f,
-                        HeightRequest = graph.Height - 20f,
-                        BackgroundColor = Colors.White,
-                        TextColor = Colors.Black,
-                        VerticalTextAlignment = TextAlignment.Start,
-                        IsVisible = true,
-                        IsEnabled = true,
-                        ZIndex = 0
-                    };
-                    textbox.Focused += (s, e) =>
-                    {
-                        ZIndexMove(graph);
-                    };
-                    Debug.WriteLine($"◆!!!--- textbox Rect({textbox.TranslationX},{textbox.TranslationY},{textbox.WidthRequest},{textbox.HeightRequest})");
-
-                    // add                   
-                    /
-                     　EditorDictionary       ... Cardの参照とセットになっているtextboxオブジェクトの参照
-                     　CardDictionary         ... Cardの参照とZINdexの辞書
-                     　mainPage.grid.Children ... MainPageに描画されているViewオブジェクトの参照
-                    /
-
-                    if (EditorDictionary.ContainsKey(_graphicsView))
-                    {
-                        if (VisualComponentDictionary.ContainsKey(EditorDictionary[_graphicsView]))
-                        {
-                            VisualComponentDictionary.Remove(EditorDictionary[_graphicsView]);
-                        }
-
-                        grid.Children.Remove(EditorDictionary[_graphicsView]);
-                        EditorDictionary.Remove(_graphicsView);
-                    }
-
-                    MainThread.BeginInvokeOnMainThread ( () =>
-                    {
-                        grid.Children.Add(textbox);
-
-                        EditorDictionary.Add(_graphicsView, textbox);
-                        VisualComponentDictionary.Add(textbox, 1);
-                    });
-                */           
-
                 // Invalidate
-                ZIndexMove(graph);
+                ZIndexMove(MainPage, graph);
 
                 // debug
                 foreach (var view in grid)
                 {
-                    Debug.WriteLine($"◆--- Index[{view.ZIndex}],[{view}]");
+                    //Debug.WriteLine($"◆--- Index[{view.ZIndex}],[{view}]");
                 }
-            };            
-            
+            };
+
             // PanGestureRecognizer を追加してドラッグを有効にする
             var panGesture = new PanGestureRecognizer();// Card1枚につき1つインスタンスしているので個別に反応してほしいんだが？
-            panGesture.PanUpdated += mainPage.OnPanUpdated;// メインページのドラッグ処理を拾う
+            panGesture.PanUpdated += MainPage.OnPanUpdated;// メインページのドラッグ処理を拾う
             _graphicsView.GestureRecognizers.Add(panGesture);// GraphicsView.GestureRecognizersは個別のプロパティ          
 
-            // add children                               
-            grid.Children.Add(_graphicsView);           
-
             // registered Dictionary
-            if (VisualComponentDictionary.Count > 0)
+            if (TableComponent.VisualComponentDictionary.Count > 0)
             {
-                VisualComponentDictionary.Add(_graphicsView, VisualComponentDictionary.Last().Value + 1);
+                TableComponent.VisualComponentDictionary.Add(_graphicsView, TableComponent.VisualComponentDictionary.Last().Value + 1);
             }
             else
             {
-                VisualComponentDictionary.Add(_graphicsView, 1);
+                TableComponent.VisualComponentDictionary.Add(_graphicsView, 1);
             }
 
             // generate textbox
-            GenerateTextBox(_graphicsView);
+            var txbox = GenerateTextBox(MainPage, _graphicsView);
 
             // debug
-            Debug.WriteLine($"◆--- generate card : value[{VisualComponentDictionary.Last().Value}], MainPage[{mainPage is not null}], GraView[{_graphicsView is not null}]");           
+            //Debug.WriteLine($"◆--- generate card : value[{TableComponent.VisualComponentDictionary.Last().Value}], MainPage[{mainPage is not null}], GraView[{_graphicsView is not null}]");
 
-            return _graphicsView;
+            return new FlashCard(TableComponent.MainPageContent,_graphicsView,txbox);
         }
-
-        static void GenerateTextBox(GraphicsView graph)
+        /// <summary>
+        /// テキスト入力フォームの生成
+        /// </summary>
+        /// <param name="mainPage"></param>
+        /// <param name="graph"></param>
+        /// <returns></returns>
+        static Editor GenerateTextBox(this MainPage mainPage, GraphicsView graph)
         {
-            Debug.WriteLine($"◆ generate textbox");
+            //Debug.WriteLine($"◆ generate textbox");
 
             // form const
             float padding = 5f;
@@ -228,172 +371,118 @@ namespace Zettelkasten
                 IsEnabled = true,
                 Visual = default,
                 ZIndex = 0,
-                
+
             };// textboxの影についてはプラットフォームごとのカスタムハンドラーが必要とのこと。
             textbox.Focused += (s, e) =>
             {
-                ZIndexMove(graph);
+                ZIndexMove(mainPage, graph);
             };
             //Debug.WriteLine($"◆--- textbox Rect({textbox.TranslationX},{textbox.TranslationY},{textbox.WidthRequest},{textbox.HeightRequest})");
 
-            // add                   
-            var grid = MainPage?.Content as Grid;
+            // add
+            /*
+            var grid = mainPage?.Content as Grid;
             if (grid is null)
             {
                 Debug.WriteLine($"◆[ERROR] reference missing. MainPage content don't have 'Grid'.");
-                return;
+                return textbox;
             }
+            */
 
-            if (EditorDictionary.ContainsKey(graph))
-            {
-                if (VisualComponentDictionary.ContainsKey(EditorDictionary[graph]))
-                {
-                    VisualComponentDictionary.Remove(EditorDictionary[graph]);
-                }
-
-                grid.Children.Remove(EditorDictionary[graph]);
-                EditorDictionary.Remove(graph);
-            }
-
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                grid.Children.Add(textbox);
-
-                EditorDictionary.Add(graph, textbox);
-                VisualComponentDictionary.Add(textbox,0);
-            });
+            return textbox;
         }
 
-        static void ZIndexMove(GraphicsView touchCard)
+        /// <summary>
+        /// カードのイベントハンドラに委譲する階層移動<br/>
+        /// </summary>
+        /// <param name="mainPage"></param>
+        /// <param name="touchCard"></param>
+        static void ZIndexMove(this MainPage mainPage, GraphicsView touchCard)
         {
             Editor? pairTb = null;
 
             // タッチしたカード以外をのvalueを+1し、タッチしたカードは1(最小値)にする
-            foreach(var key in VisualComponentDictionary.Keys.ToList())
+            foreach (var key in TableComponent.VisualComponentDictionary.Keys.ToList())
             {
-                Debug.WriteLine($"pairTb is null :{ pairTb is null }");               
+                Debug.WriteLine($"pairTb is null :{pairTb is null}");
 
-                if ( key == touchCard )
+                if (key == touchCard)
                 {
-                    VisualComponentDictionary[key] = 1;
-                    Debug.WriteLine($"EditorDictionary.ContainsKey(touchCard) :{EditorDictionary.ContainsKey(touchCard)}");
-                    if (EditorDictionary.ContainsKey(touchCard))
+                    TableComponent.VisualComponentDictionary[key] = 1;
+                    //Debug.WriteLine($"EditorDictionary.ContainsKey(touchCard) :{TableComponent.FlashCardDictionary.ContainsKey(touchCard)}");
+                    if (TableComponent.FlashCardDictionary.ContainsKey(touchCard))
                     {
+                        var card = TableComponent.FlashCardDictionary[touchCard];
+
                         //Debug.WriteLine($"{ EditorDictionary[touchCard] } = {VisualComponentDictionary[EditorDictionary[touchCard]]}");
-                        VisualComponentDictionary[ EditorDictionary[touchCard] ] = 0;
-                        pairTb = EditorDictionary[touchCard];
-                    }                   
+                        TableComponent.VisualComponentDictionary[card.Cardobject] = 0;
+                        pairTb = TableComponent.FlashCardDictionary[touchCard].Textbox;
+                    }
                 }
                 else
                 {
                     if (key != pairTb)
                     {
-                        VisualComponentDictionary[key] = VisualComponentDictionary[key] + 2;
+                        TableComponent.VisualComponentDictionary[key] = TableComponent.VisualComponentDictionary[key] + 2;
                         Debug.WriteLine($" plus ");
-                    }                   
-                }                           
+                    }
+                }
             }
 
             // 再描画
-            foreach(var key in VisualComponentDictionary.Keys.ToList())
+            foreach (var key in TableComponent.VisualComponentDictionary.Keys.ToList())
             {
                 // 大きいほど一番上にカードが来る ので、ZIndex = int.MaxValue - dictionary.value
-                if (MainPage is not null)
+                if (mainPage is not null)
                 {
-                    var gridContent = MainPage.Content as Grid;
+                    var gridContent = mainPage.Content as Grid;
                     var view = gridContent?.Children.FirstOrDefault(x => x == key) as View;
 
                     if (view is not null)
                     {
-                        view.ZIndex = int.MaxValue - VisualComponentDictionary[key];
+                        view.ZIndex = int.MaxValue - TableComponent.VisualComponentDictionary[key];
                         //Debug.WriteLine($"◆---Index [{int.MaxValue - VisualComponentDictionary[key]}]. Key is [{view}]. ");
                     }
                 }
             }
         }
     }
-    public partial class MainPage : ContentPage
+
+    public class FlashCard
     {
-        internal Anchor _dragAnchor;
-
-        public MainPage()
+        /// <summary>
+        /// 所属しているGrid
+        /// </summary>
+        public readonly List<IView> ParentGrid;
+        /// <summary>
+        /// 単語カードの参照
+        /// </summary>
+        public readonly GraphicsView Cardobject;
+        /// <summary>
+        /// テキストボックス
+        /// </summary>
+        public readonly Editor Textbox;
+        public double TranslationX
         {
-            Debug.WriteLine($"◆ MainPage Constructor");
-
-            InitializeComponent();// initialize and read XAML. This generate when initializing and belong "obj".
-
-            // init
-            TableComponent.MainPage = this;
-            _dragAnchor = new Anchor(0, 0);
-            Content = new Grid();
+            get => Cardobject.TranslationX;
+            set => Cardobject.TranslationX = value;
         }
-        
-        // ドラッグ更新時に呼ばれるメソッド
-        internal void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
+        public double TranslationY
         {
-            Debug.WriteLine($"◆ MainPage.OnPanUpdated");
-            //Debug.WriteLine($"◆--- sender :{sender.GetType().Name}");
-            //Debug.WriteLine($"◆--- anchor({_dragAnchor.StartX},{_dragAnchor.StartY})");
-
-            // cast
-            GraphicsView? rectangle = sender as GraphicsView;      
-            if (rectangle == null) return;
-
-            float FIX_LIMIT = 5f;
-            float LimitHeight = ((float)Height / 2) - ((float)rectangle.Height / 2) - FIX_LIMIT;
-            float LimitWidth = ((float)Width / 2) - ((float)rectangle.Width / 2) - FIX_LIMIT;
-
-            if (e.StatusType == GestureStatus.Started)
-            {
-                // start position init
-                _dragAnchor = new Anchor(rectangle.TranslationX, rectangle.TranslationY);
-                Debug.WriteLine($"◆--- MainPage Size({Width},{Height})");
-                Debug.WriteLine($"◆--- anchor({_dragAnchor.StartX},{_dragAnchor.StartY})");
-                return;
-            }
-
-            // GestureStatus が Running の場合に位置を更新
-            if (e.StatusType == GestureStatus.Running)
-            {
-                // ドラッグスタート位置からドラッグ後の位置を出力
-                Debug.WriteLine($"◆--- rectangle total moving [before] ({rectangle.TranslationX},{rectangle.TranslationY})");
-                //Debug.WriteLine($"◆--- rectangle size ({rectangle.Width},{rectangle.Height})");
-                var nextX = (float)_dragAnchor.StartX + (float)e.TotalX;
-                var nextY = (float)_dragAnchor.StartY + (float)e.TotalY;
-
-                // 矩形がアプリケーションの外に出るようなドラッグは受け付けない
-                if (nextY > LimitHeight) nextY = LimitHeight;
-                if (nextY < -1 * LimitHeight) nextY = -1 * LimitHeight;
-                if (nextX > LimitWidth) nextX = LimitWidth;
-                if (nextX < -1 * LimitWidth) nextX = -1 * LimitWidth;
-
-                // 移動後の座標をセット
-                rectangle.TranslationX = nextX;
-                rectangle.TranslationY = nextY;
-                if( TableComponent.EditorDictionary.ContainsKey(rectangle) )
-                {
-                    TableComponent.EditorDictionary[rectangle].TranslationX = nextX;
-                    TableComponent.EditorDictionary[rectangle].TranslationY = nextY + 5f;
-                }
-                
-                Debug.WriteLine($"◆--- rectangle total moving [after] ({rectangle.TranslationX},{rectangle.TranslationY})");
-
-                // 再描画を要求
-                rectangle.Invalidate();
-            }
+            get => Cardobject.TranslationY;
+            set => Cardobject.TranslationY = value;
         }
-        private void MainPage_SizeChanged(object? sender, EventArgs e)
+
+        public FlashCard(List<IView> _gridChildren, GraphicsView _view ,Editor _editor)
         {
-            Debug.WriteLine($"◆ MainPage.MainPage_SizeChanged");
+            ParentGrid = _gridChildren;
+            Cardobject = _view;
+            Textbox = _editor;
 
-            // この時点で Height および Width は有効な値になります
-            double height = this.Height;
-            double width = this.Width;
-
-            Debug.WriteLine($"◆--- MainPage Height: {height}, Width: {width}");
+            ParentGrid.Add(_view);
+            ParentGrid.Add(_editor);
         }
     }
-
     public class FlashCardProperty
     {
         /* 
@@ -406,54 +495,9 @@ namespace Zettelkasten
         public Color TagFontColor { get; set; } = Colors.Black;
         public float CardHeight { get; set; } = 350f;
         public float CardWidth { get; set; } = 150f;
-
-
-
         public FlashCardProperty() { }
     }
-
-    public class FlashCardFactory
-    {
-        /*
-         * MainPage.Component は Grid であり、IViewインスタンスを都度.Addする必要がある。
-         * ・カードとタグの GraphicsView および Entry を１個ずつ順に出力する
-         * ・出力したカードとタグの構造体を Dictionary で管理。ZIndex を振り分けるためのレイヤーレベルを辞書化する
-         * ・singleton
-         * ・
-         * ・       
-         */
-        public Dictionary<FlashCard, int> Layer = new();
-
-        public static FlashCardFactory _instance;
-        public FlashCardFactory Instance => _instance;
-        FlashCardFactory()
-        {
-            _instance = this;
-        }
-    }
-
-    public class FlashCard
-    {
-        /*
-         * FlashCard のコンポーネントを管理するクラス
-         * 
-         *
-         */
-        /// <summary>
-        /// 所属しているGrid
-        /// </summary>
-        private List<IView> ParentGrid;
-        /// <summary>
-        /// 単語カードの参照
-        /// </summary>
-        private GraphicsView CardObject;
-        public FlashCard(List<IView> _gridChildren)
-        {
-            ParentGrid = _gridChildren;           
-            
-        }
-    }
-
+    /*
     public class TestObj : IDrawable
     {
         public TestObj() 
@@ -465,6 +509,7 @@ namespace Zettelkasten
             Debug.WriteLine($"◆--- TestObj Draw");
         }
     }
+    */
     public class DraggableGraphics : IDrawable
     {
         public string Content = "...";
