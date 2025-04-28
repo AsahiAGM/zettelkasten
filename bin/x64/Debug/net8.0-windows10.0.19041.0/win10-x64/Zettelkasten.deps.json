@@ -12,6 +12,7 @@
           "Microsoft.Extensions.Logging.Debug": "8.0.0",
           "Microsoft.Maui.Controls": "8.0.100",
           "Microsoft.Maui.Controls.Compatibility": "8.0.100",
+          "PlantUmlClassDiagramGenerator.SourceGenerator": "1.1.0",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.34"
         },
         "runtime": {
@@ -444,7 +445,8 @@
             "fileVersion": "1.5.0.0"
           }
         }
-      }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {}
     }
   },
   "libraries": {
@@ -618,6 +620,13 @@
       "sha512": "sha512-XW6cNzbGKDuzn+iCY1L9pNDm3pF78te8PXjKWEYk+rgePVPV/j2otr75Q5NMbWzsMF461Qq7aPJZKUQAQJNISQ==",
       "path": "microsoft.windowsappsdk/1.5.240802000",
       "hashPath": "microsoft.windowsappsdk.1.5.240802000.nupkg.sha512"
+    },
+    "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/uJjLmrc3NqKzBvwHBqXAldHgTULJjhz3P/oh47amzJqW9D1koeFiqdm+/P0pxdx89iY3cnvgxci4BHBOvre+w==",
+      "path": "plantumlclassdiagramgenerator.sourcegenerator/1.1.0",
+      "hashPath": "plantumlclassdiagramgenerator.sourcegenerator.1.1.0.nupkg.sha512"
     }
   }
 }

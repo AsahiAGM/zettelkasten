@@ -1,0 +1,6 @@
+@startuml
+!include .\\App.xaml.puml
+!include .\\AppShell.xaml.puml
+!include .\\MainPage.xaml.puml
+!include .\\MauiProgram.puml
+@enduml

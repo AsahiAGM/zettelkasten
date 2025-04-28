@@ -1,0 +1,72 @@
+@startuml
+class MainPage <<partial>> {
+    <<internal>> DrawObjectDictionary : Dictionary<Table, Grid>
+    + MainPage()
+    # <<override>> OnNavigatedTo(args:NavigatedToEventArgs) : void
+    <<internal>> OnPanUpdated(sender:object?, e:PanUpdatedEventArgs) : void
+    - MainPage_SizeChanged(sender:object?, e:EventArgs) : void
+    + {static} GenerateCard() : void
+}
+class CurrentTable <<static>> {
+    + {static} TableDictionary : Dictionary<int, Table>
+    + {static} GenerateCardCount : int <<get>>
+    + {static} FlashCardDictionary : Dictionary<GraphicsView, FlashCard> <<get>>
+    + {static} VisualComponentZIndexDictionary : Dictionary<View, int> <<get>>
+    + {static} ChangeTable(tableId:int) : void
+}
+class Table {
+    + Id : Guid <<get>> <<set>>
+    + GenerateCardCount : int <<get>> <<set>> = 0
+    + FlashCardDictionary : Dictionary<GraphicsView, FlashCard>
+    + VisualComponentZIndexDictionary : Dictionary<View, int>
+    + Table(parent:Grid)
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class FlashCardFactory <<static>> {
+    + {static} GererateCard() : FlashCard
+    {static} - GenerateTextBox(mainPage:MainPage, graph:GraphicsView, property:FlashCardProperty) : Editor
+    {static} - ZIndexMove(mainPage:MainPage, touchCard:GraphicsView) : void
+}
+class FlashCard {
+    + TranslationX : double <<get>> <<set>>
+    + TranslationY : double <<get>> <<set>>
+    + Translation(nextX:double, nextY:double) : void
+    + FlashCard(_grid:Grid, _view:GraphicsView, _editor:Editor, _property:FlashCardProperty)
+}
+class FlashCardProperty {
+    + TextFontSize : int <<get>> <<set>> = 12
+    + TextFontColor : Color <<get>> <<set>>
+    + TagFontSize : int <<get>> <<set>> = 8
+    + TagFontColor : Color <<get>> <<set>>
+    + CardHeight : float <<get>> <<set>> = 150f
+    + CardWidth : float <<get>> <<set>> = 350f
+    + CardBackgroundColor : Color <<get>> <<set>>
+    + FlashCardProperty()
+}
+class DraggableGraphics {
+    + Content : string = "..."
+    + <<readonly>> Number : int
+    - _corner : float = 7f
+    + DraggableGraphics(num:int, _property:FlashCardProperty, parent:GraphicsView)
+    + Draw(canvas:ICanvas, dirtyRect:RectF) : void
+}
+class Anchor {
+    + StartX : double
+    + StartY : double
+    + Anchor(_x:double, _y:double)
+}
+ContentPage <|-- MainPage
+MainPage --> "_dragAnchor" Anchor
+CurrentTable o-> "table" Table
+CurrentTable --> "MainPageContent" Grid
+Table --> "ParentGrid" Grid
+FlashCardFactory --> "MainPage" MainPage
+FlashCard --> "ParentGrid" Grid
+FlashCard --> "Cardobject" GraphicsView
+FlashCard --> "Textbox" Editor
+FlashCard --> "Property" FlashCardProperty
+IDrawable <|-- DraggableGraphics
+DraggableGraphics --> "parentView" GraphicsView
+DraggableGraphics --> "property" FlashCardProperty
+@enduml
