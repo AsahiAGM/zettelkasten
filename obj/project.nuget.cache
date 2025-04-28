@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KgESQNxED+g=",
+  "dgSpecHash": "irrEOGvwzD8=",
   "success": true,
   "projectFilePath": "F:\\ApplicationFactory\\zettelkasten\\Zettelkasten.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\Asahi\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.8\\microsoft.net.illink.tasks.8.0.8.nupkg.sha512",
     "C:\\Users\\Asahi\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.756\\microsoft.windows.sdk.buildtools.10.0.22621.756.nupkg.sha512",
     "C:\\Users\\Asahi\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240802000\\microsoft.windowsappsdk.1.5.240802000.nupkg.sha512",
+    "C:\\Users\\Asahi\\.nuget\\packages\\plantumlclassdiagramgenerator.sourcegenerator\\1.1.0\\plantumlclassdiagramgenerator.sourcegenerator.1.1.0.nupkg.sha512",
     "C:\\Users\\Asahi\\.nuget\\packages\\xamarin.android.glide\\4.15.1.2\\xamarin.android.glide.4.15.1.2.nupkg.sha512",
     "C:\\Users\\Asahi\\.nuget\\packages\\xamarin.android.glide.annotations\\4.15.1.2\\xamarin.android.glide.annotations.4.15.1.2.nupkg.sha512",
     "C:\\Users\\Asahi\\.nuget\\packages\\xamarin.android.glide.disklrucache\\4.15.1.2\\xamarin.android.glide.disklrucache.4.15.1.2.nupkg.sha512",

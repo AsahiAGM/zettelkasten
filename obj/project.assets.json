@@ -445,6 +445,9 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -2651,6 +2654,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
@@ -4859,6 +4865,9 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -7065,6 +7074,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
@@ -9273,6 +9285,9 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -11479,6 +11494,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
@@ -13687,6 +13705,9 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -15894,6 +15915,9 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -18076,6 +18100,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-ios18.0/android-arm": {
@@ -18497,6 +18524,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-ios18.0/android-arm64": {
@@ -18918,6 +18948,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-ios18.0/android-x64": {
@@ -19339,6 +19372,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-ios18.0/android-x86": {
@@ -19760,6 +19796,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-ios18.0/iossimulator-x64": {
@@ -20181,6 +20220,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-ios18.0/maccatalyst-x64": {
@@ -20602,6 +20644,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-ios18.0/win10-x64": {
@@ -21023,6 +21068,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0": {
@@ -21444,6 +21492,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0/android-arm": {
@@ -21865,6 +21916,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0/android-arm64": {
@@ -22286,6 +22340,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0/android-x64": {
@@ -22707,6 +22764,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0/android-x86": {
@@ -23128,6 +23188,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0/iossimulator-x64": {
@@ -23549,6 +23612,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0/maccatalyst-x64": {
@@ -23970,6 +24036,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-maccatalyst18.0/win10-x64": {
@@ -24391,6 +24460,9 @@
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041": {
@@ -24981,6 +25053,9 @@
             "rid": "win10-x86"
           }
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041/android-arm": {
@@ -25531,6 +25606,9 @@
           "buildTransitive/Microsoft.WindowsAppSDK.props": {},
           "buildTransitive/Microsoft.WindowsAppSDK.targets": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041/android-arm64": {
@@ -26081,6 +26159,9 @@
           "buildTransitive/Microsoft.WindowsAppSDK.props": {},
           "buildTransitive/Microsoft.WindowsAppSDK.targets": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041/android-x64": {
@@ -26631,6 +26712,9 @@
           "buildTransitive/Microsoft.WindowsAppSDK.props": {},
           "buildTransitive/Microsoft.WindowsAppSDK.targets": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041/android-x86": {
@@ -27181,6 +27265,9 @@
           "buildTransitive/Microsoft.WindowsAppSDK.props": {},
           "buildTransitive/Microsoft.WindowsAppSDK.targets": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041/iossimulator-x64": {
@@ -27731,6 +27818,9 @@
           "buildTransitive/Microsoft.WindowsAppSDK.props": {},
           "buildTransitive/Microsoft.WindowsAppSDK.targets": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041/maccatalyst-x64": {
@@ -28281,6 +28371,9 @@
           "buildTransitive/Microsoft.WindowsAppSDK.props": {},
           "buildTransitive/Microsoft.WindowsAppSDK.targets": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     },
     "net8.0-windows10.0.19041/win10-x64": {
@@ -28837,6 +28930,9 @@
           "buildTransitive/Microsoft.WindowsAppSDK.props": {},
           "buildTransitive/Microsoft.WindowsAppSDK.targets": {}
         }
+      },
+      "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+        "type": "package"
       }
     }
   },
@@ -31097,6 +31193,19 @@
         "tools/x86/GenXbf.dll"
       ]
     },
+    "PlantUmlClassDiagramGenerator.SourceGenerator/1.1.0": {
+      "sha512": "/uJjLmrc3NqKzBvwHBqXAldHgTULJjhz3P/oh47amzJqW9D1koeFiqdm+/P0pxdx89iY3cnvgxci4BHBOvre+w==",
+      "type": "package",
+      "path": "plantumlclassdiagramgenerator.sourcegenerator/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "analyzers/dotnet/cs/PlantUmlClassDiagramGenerator.SourceGenerator.dll",
+        "plantumlclassdiagramgenerator.sourcegenerator.1.1.0.nupkg.sha512",
+        "plantumlclassdiagramgenerator.sourcegenerator.nuspec"
+      ]
+    },
     "Xamarin.Android.Glide/4.15.1.2": {
       "sha512": "DcekP+BXm4jFMV7zjHEltj01uiXcItq1kjGa79pj/Vx1rk3Ac2VXdmwGw06HXDP8n2XZsDh8dAoSI48G4KODRA==",
       "type": "package",
@@ -33140,24 +33249,28 @@
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.100",
       "Microsoft.Maui.Controls.Compatibility >= 8.0.100",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.8"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.8",
+      "PlantUmlClassDiagramGenerator.SourceGenerator >= 1.1.0"
     ],
     "net8.0-ios18.0": [
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.100",
       "Microsoft.Maui.Controls.Compatibility >= 8.0.100",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.8"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.8",
+      "PlantUmlClassDiagramGenerator.SourceGenerator >= 1.1.0"
     ],
     "net8.0-maccatalyst18.0": [
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.100",
       "Microsoft.Maui.Controls.Compatibility >= 8.0.100",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.8"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.8",
+      "PlantUmlClassDiagramGenerator.SourceGenerator >= 1.1.0"
     ],
     "net8.0-windows10.0.19041": [
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.100",
-      "Microsoft.Maui.Controls.Compatibility >= 8.0.100"
+      "Microsoft.Maui.Controls.Compatibility >= 8.0.100",
+      "PlantUmlClassDiagramGenerator.SourceGenerator >= 1.1.0"
     ]
   },
   "packageFolders": {
@@ -33243,6 +33356,12 @@
             "target": "Package",
             "version": "[8.0.8, )",
             "autoReferenced": true
+          },
+          "PlantUmlClassDiagramGenerator.SourceGenerator": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.1.0, )"
           }
         },
         "imports": [
@@ -33286,6 +33405,12 @@
             "target": "Package",
             "version": "[8.0.8, )",
             "autoReferenced": true
+          },
+          "PlantUmlClassDiagramGenerator.SourceGenerator": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.1.0, )"
           }
         },
         "imports": [
@@ -33329,6 +33454,12 @@
             "target": "Package",
             "version": "[8.0.8, )",
             "autoReferenced": true
+          },
+          "PlantUmlClassDiagramGenerator.SourceGenerator": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.1.0, )"
           }
         },
         "imports": [
@@ -33367,6 +33498,12 @@
           "Microsoft.Maui.Controls.Compatibility": {
             "target": "Package",
             "version": "[8.0.100, )"
+          },
+          "PlantUmlClassDiagramGenerator.SourceGenerator": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.1.0, )"
           }
         },
         "imports": [

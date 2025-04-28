@@ -1,0 +1,8 @@
+@startuml
+class AppShell <<partial>> {
+    + AppShell()
+    - OnAddCardClicked(sender:object, e:EventArgs) : void
+    - OnMenuClicked(sender:object, e:EventArgs) : void
+}
+Shell <|-- AppShell
+@enduml

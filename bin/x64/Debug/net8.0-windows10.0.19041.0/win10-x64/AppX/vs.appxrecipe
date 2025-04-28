@@ -29,25 +29,25 @@
     <AppXManifest Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-14T07:20:47.136</Modified>
+      <Modified>2025-04-28T15:08:44.329</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-14T06:13:54.454</Modified>
+      <Modified>2025-04-28T15:03:52.830</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.runtimeconfig.json">
       <PackagePath>Zettelkasten.runtimeconfig.json</PackagePath>
-      <Modified>2025-04-14T06:13:51.673</Modified>
+      <Modified>2025-04-28T15:03:48.564</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.dll">
       <PackagePath>Zettelkasten.dll</PackagePath>
-      <Modified>2025-04-14T07:19:56.136</Modified>
+      <Modified>2025-04-28T15:08:42.580</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>Zettelkasten.exe</PackagePath>
-      <Modified>2025-04-14T07:19:59.808</Modified>
+      <Modified>2025-04-28T15:08:42.613</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -296,10 +296,6 @@
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\reference.scale-100.txt">
       <PackagePath>reference.scale-100.txt</PackagePath>
       <Modified>2025-04-14T06:08:58.219</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.deps.json">
-      <PackagePath>Zettelkasten.deps.json</PackagePath>
-      <Modified>2025-04-14T06:13:51.048</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.34\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
@@ -584,6 +580,10 @@
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.windowsappsdk\1.5.240802000\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
       <Modified>2024-06-25T19:48:44.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.deps.json">
+      <PackagePath>Zettelkasten.deps.json</PackagePath>
+      <Modified>2025-04-28T15:03:53.314</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.maui.controls.compatibility\8.0.100\lib\net8.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>

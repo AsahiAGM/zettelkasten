@@ -223,9 +223,6 @@
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\reference.scale-100.txt">
       <PackagePath>reference.scale-100.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.deps.json">
-      <PackagePath>Zettelkasten.deps.json</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.34\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
     </AppxPackagedFile>
@@ -438,6 +435,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.windowsappsdk\1.5.240802000\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.deps.json">
+      <PackagePath>Zettelkasten.deps.json</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.maui.controls.compatibility\8.0.100\lib\net8.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>
