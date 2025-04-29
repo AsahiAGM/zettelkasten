@@ -18,7 +18,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>0BD8247093A3643399939011D87F3751321D01FC3D85374C52C8D13B515F3E36</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>62CCD0BFCC906AA64E8D70A1AAB2C7B9235F13B5C52550ACB2BF99D6301B3FCC</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>com.companyname.zettelkasten_0.0.2.0_x64__qzefmw34kenn2</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>com.companyname.zettelkasten_qzefmw34kenn2!App</RegisteredUserModeAppID>
     <RegisteredPackageID>com.companyname.zettelkasten</RegisteredPackageID>
@@ -29,25 +29,25 @@
     <AppXManifest Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-28T15:08:44.329</Modified>
+      <Modified>2025-04-29T16:27:52.497</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-28T15:03:52.830</Modified>
+      <Modified>2025-04-29T14:59:19.774</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.runtimeconfig.json">
       <PackagePath>Zettelkasten.runtimeconfig.json</PackagePath>
-      <Modified>2025-04-28T15:03:48.564</Modified>
+      <Modified>2025-04-29T15:28:34.377</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.dll">
       <PackagePath>Zettelkasten.dll</PackagePath>
-      <Modified>2025-04-28T15:08:42.580</Modified>
+      <Modified>2025-04-29T16:27:51.981</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>Zettelkasten.exe</PackagePath>
-      <Modified>2025-04-28T15:08:42.613</Modified>
+      <Modified>2025-04-29T16:27:51.997</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -55,23 +55,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:55.641</Modified>
+      <Modified>2025-04-29T14:59:04.196</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
       <PackagePath>splashSplashScreen.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:55.657</Modified>
+      <Modified>2025-04-29T14:59:04.212</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
       <PackagePath>splashSplashScreen.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:55.688</Modified>
+      <Modified>2025-04-29T14:59:04.290</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
       <PackagePath>splashSplashScreen.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:55.766</Modified>
+      <Modified>2025-04-29T14:59:04.462</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
       <PackagePath>splashSplashScreen.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:55.938</Modified>
+      <Modified>2025-04-29T14:59:04.743</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
       <PackagePath>OpenSans-Regular.ttf</PackagePath>
@@ -83,219 +83,219 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.571</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.055</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.055</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.055</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:10.993</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:10.993</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.376</Modified>
+      <Modified>2025-04-29T14:59:11.743</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.329</Modified>
+      <Modified>2025-04-29T14:59:11.680</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.587</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.532</Modified>
+      <Modified>2025-04-29T14:59:12.071</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.485</Modified>
+      <Modified>2025-04-29T14:59:11.962</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.438</Modified>
+      <Modified>2025-04-29T14:59:11.821</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.438</Modified>
+      <Modified>2025-04-29T14:59:11.899</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.438</Modified>
+      <Modified>2025-04-29T14:59:11.821</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.571</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.446</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.688</Modified>
+      <Modified>2025-04-29T14:59:12.383</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.641</Modified>
+      <Modified>2025-04-29T14:59:12.290</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.594</Modified>
+      <Modified>2025-04-29T14:59:12.133</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.594</Modified>
+      <Modified>2025-04-29T14:59:12.196</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.594</Modified>
+      <Modified>2025-04-29T14:59:12.196</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.352</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.274</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.274</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.180</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.180</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.430</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.430</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.430</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.352</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.352</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.430</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.297</Modified>
+      <Modified>2025-04-29T14:59:11.430</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.180</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.180</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.102</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.102</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:11.102</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.649</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.649</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.649</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.571</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.571</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\icon_menu.scale-100.png">
       <PackagePath>icon_menu.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.751</Modified>
+      <Modified>2025-04-29T14:59:12.712</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\icon_plus.scale-100.png">
       <PackagePath>icon_plus.scale-100.png</PackagePath>
-      <Modified>2025-04-14T06:08:58.282</Modified>
+      <Modified>2025-04-29T14:59:12.712</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\reference.scale-100.txt">
       <PackagePath>reference.scale-100.txt</PackagePath>
-      <Modified>2025-04-14T06:08:58.219</Modified>
+      <Modified>2025-04-29T14:59:10.899</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.34\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
@@ -583,7 +583,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.deps.json">
       <PackagePath>Zettelkasten.deps.json</PackagePath>
-      <Modified>2025-04-28T15:03:53.314</Modified>
+      <Modified>2025-04-29T15:28:34.549</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.maui.controls.compatibility\8.0.100\lib\net8.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>

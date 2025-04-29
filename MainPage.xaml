@@ -4,8 +4,8 @@
              BackgroundColor="RosyBrown"
              x:Class="Zettelkasten.MainPage">
 
-    <StackLayout>
+    <Grid x:Name="MainGrid">
         <!-- ここにメインのUIコンテンツを追加 -->
-    </StackLayout>
+    </Grid>
 
 </ContentPage>
