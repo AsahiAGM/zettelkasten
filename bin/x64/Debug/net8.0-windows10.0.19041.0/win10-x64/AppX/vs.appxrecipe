@@ -29,7 +29,7 @@
     <AppXManifest Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-29T16:27:52.497</Modified>
+      <Modified>2025-04-30T06:12:26.623</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.dll">
       <PackagePath>Zettelkasten.dll</PackagePath>
-      <Modified>2025-04-29T16:27:51.981</Modified>
+      <Modified>2025-04-30T06:12:26.029</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>Zettelkasten.exe</PackagePath>
-      <Modified>2025-04-29T16:27:51.997</Modified>
+      <Modified>2025-04-30T06:12:26.092</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
