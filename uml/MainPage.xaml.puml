@@ -1,54 +1,91 @@
 @startuml
 class MainPage <<partial>> {
-    <<internal>> DrawObjectDictionary : Dictionary<Table, Grid>
     + MainPage()
     # <<override>> OnNavigatedTo(args:NavigatedToEventArgs) : void
     <<internal>> OnPanUpdated(sender:object?, e:PanUpdatedEventArgs) : void
     - MainPage_SizeChanged(sender:object?, e:EventArgs) : void
     + {static} GenerateCard() : void
+    + {static} ZIndexMove(touchCard:GraphicsView) : void
 }
 class CurrentTable <<static>> {
     + {static} TableDictionary : Dictionary<int, Table>
     + {static} GenerateCardCount : int <<get>>
     + {static} FlashCardDictionary : Dictionary<GraphicsView, FlashCard> <<get>>
-    + {static} VisualComponentZIndexDictionary : Dictionary<View, int> <<get>>
     + {static} ChangeTable(tableId:int) : void
 }
 class Table {
-    + Id : Guid <<get>> <<set>>
-    + GenerateCardCount : int <<get>> <<set>> = 0
+    + Id : Guid <<get>>
+    + GenerateCardCount : int <<get>> = 0
+    + RootCardCount : int <<get>>
     + FlashCardDictionary : Dictionary<GraphicsView, FlashCard>
-    + VisualComponentZIndexDictionary : Dictionary<View, int>
     + Table(parent:Grid)
-    + <<override>> Equals(obj:object) : bool
     + <<override>> GetHashCode() : int
+    + Equals(other:Table?) : bool
 }
 class FlashCardFactory <<static>> {
     + {static} GererateCard() : FlashCard
-    {static} - GenerateTextBox(mainPage:MainPage, graph:GraphicsView, property:FlashCardProperty) : Editor
-    {static} - ZIndexMove(mainPage:MainPage, touchCard:GraphicsView) : void
-}
-class FlashCard {
-    + TranslationX : double <<get>> <<set>>
-    + TranslationY : double <<get>> <<set>>
-    + Translation(nextX:double, nextY:double) : void
-    + FlashCard(_grid:Grid, _view:GraphicsView, _editor:Editor, _property:FlashCardProperty)
+    {static} - GenerateTextBox(graph:GraphicsView, property:FlashCardProperty) : Editor
 }
 class FlashCardProperty {
-    + TextFontSize : int <<get>> <<set>> = 12
+    + TextFontSize : int <<get>> <<set>> = 16
     + TextFontColor : Color <<get>> <<set>>
-    + TagFontSize : int <<get>> <<set>> = 8
+    + TextBoxBackGround : Color <<get>> <<set>>
+    + TagHeight : float <<get>> <<set>> = 20f
+    + TagWidth : float <<get>> <<set>> = 80f
+    + TagFontSize : int <<get>> <<set>> = 10
     + TagFontColor : Color <<get>> <<set>>
     + CardHeight : float <<get>> <<set>> = 150f
     + CardWidth : float <<get>> <<set>> = 350f
     + CardBackgroundColor : Color <<get>> <<set>>
     + FlashCardProperty()
 }
+class FlashCard {
+    + RootId : int <<get>>
+    + IsRoot : bool <<get>>
+    + TranslationX : double <<get>>
+    + TranslationY : double <<get>>
+    + ZIndex : List<ViewIndexPair> <<get>>
+    + FlashCard(cardObject:CardObject, tag:Tag)
+    + MoveTop() : void
+    + MoveLower() : void
+    - CalcZIndex() : void
+    + GetViewModel() : List<IView>
+    + Translation(nextX:double, nextY:double) : void
+}
+class CardObject {
+    + Id : Guid <<get>>
+    + TranslationX : double <<get>> <<set>>
+    + TranslationY : double <<get>> <<set>>
+    + CardObject(_view:GraphicsView, _editor:Editor, _property:FlashCardProperty)
+    + Translation(nextX:double, nextY:double) : void
+    + Equals(other:CardObject?) : bool
+    + <<override>> GetHashCode() : int
+}
+class Tag {
+    + Id : Guid <<get>>
+    + RootId : int <<get>>
+    + IsRoot : bool <<get>>
+    - tagString : string <<get>>
+    + TranslationX : double <<get>>
+    + TranslationY : double <<get>>
+    - _children : List<Tag>
+    + Children : List<Tag> <<get>>
+    + Tag(cobj:CardObject, property:FlashCardProperty, GenerateTextBox:Func<GraphicsView, FlashCardProperty, Editor>)
+    + Traverse() : IEnumerable<Tag>
+    + Translation(nextX:double, nextY:double) : void
+    + GetTagId() : string
+    + ChangeParent(newParent:Tag?) : Tag?
+    + MoveIdInChildren(newId:int) : void
+    + ResetRootId() : void
+    + RemoveChild(target:Tag) : bool
+    + Equals(other:Tag?) : bool
+    + <<override>> GetHashCode() : int
+}
 class DraggableGraphics {
-    + Content : string = "..."
-    + <<readonly>> Number : int
     - _corner : float = 7f
-    + DraggableGraphics(num:int, _property:FlashCardProperty, parent:GraphicsView)
+    - _cornerTag : float = 20f
+    - IsCard : bool = true
+    + DraggableGraphics(_property:FlashCardProperty, parent:GraphicsView, isCard:bool)
     + Draw(canvas:ICanvas, dirtyRect:RectF) : void
 }
 class Anchor {
@@ -56,17 +93,37 @@ class Anchor {
     + StartY : double
     + Anchor(_x:double, _y:double)
 }
+class "IEquatable`1"<T> {
+}
+class "List`1"<T> {
+}
+class ViewIndexPair {
+    + Index : int <<get>> <<internal set>>
+    + ViewIndexPair(index:int, viewModel:View)
+}
 ContentPage <|-- MainPage
+MainPage o-> "Instance" MainPage
 MainPage --> "_dragAnchor" Anchor
 CurrentTable o-> "table" Table
 CurrentTable --> "MainPageContent" Grid
+"IEquatable`1" "<Table>" <|-- Table
+Table --> "RootList<FlashCard>" "List`1"
 Table --> "ParentGrid" Grid
 FlashCardFactory --> "MainPage" MainPage
-FlashCard --> "ParentGrid" Grid
-FlashCard --> "Cardobject" GraphicsView
-FlashCard --> "Textbox" Editor
-FlashCard --> "Property" FlashCardProperty
+FlashCard o-> "CardObject" CardObject
+FlashCard o-> "Tag" Tag
+"IEquatable`1" "<CardObject>" <|-- CardObject
+CardObject --> "Background" GraphicsView
+CardObject --> "Textbox" Editor
+CardObject --> "Property" FlashCardProperty
+"IEquatable`1" "<Tag>" <|-- Tag
+Tag o-> "CardObject" CardObject
+Tag o-> "Background" GraphicsView
+Tag o-> "Textbox" Editor
+Tag --> "Parent" Tag
 IDrawable <|-- DraggableGraphics
 DraggableGraphics --> "parentView" GraphicsView
 DraggableGraphics --> "property" FlashCardProperty
+FlashCard +-- ViewIndexPair
+ViewIndexPair o-> "ViewModel" View
 @enduml

@@ -12,6 +12,12 @@
 削除×
 
 
+MainPageの拡張クラスを作るとハンドルされない例外が出てビルドが通らなくなるから注意！！
+
+
+
+
+
 plantUMLに出力する場合
 puml-gen F:\ApplicationFactory\zettelkasten F:\ApplicationFactory\zettelkasten\uml -dir -excludePaths bin,obj,Resorces,Properties,Platforms,.vs,.git,Zettelkasten -createAssociation
 

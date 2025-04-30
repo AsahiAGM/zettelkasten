@@ -46,6 +46,7 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<PackageCertificateThumbprint>B74FE3295457250396B4643A6035CC0D29CCC194</PackageCertificateThumbprint>
 		<Platforms>AnyCPU;x64</Platforms>
+		<DefaultLanguage>en</DefaultLanguage>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -64,6 +65,14 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Splash\splash_splash_screen.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\splash_splash_screen.png" />
 	</ItemGroup>
 
 	<ItemGroup>
