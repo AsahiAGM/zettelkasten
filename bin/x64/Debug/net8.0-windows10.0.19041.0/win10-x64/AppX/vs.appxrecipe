@@ -29,13 +29,13 @@
     <AppXManifest Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-30T06:12:26.623</Modified>
+      <Modified>2025-05-01T10:54:17.734</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-29T14:59:19.774</Modified>
+      <Modified>2025-04-30T08:02:12.465</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.runtimeconfig.json">
       <PackagePath>Zettelkasten.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\bin\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.dll">
       <PackagePath>Zettelkasten.dll</PackagePath>
-      <Modified>2025-04-30T06:12:26.029</Modified>
+      <Modified>2025-05-01T10:54:17.155</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>Zettelkasten.exe</PackagePath>
-      <Modified>2025-04-30T06:12:26.092</Modified>
+      <Modified>2025-05-01T10:54:17.155</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -55,23 +55,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
-      <Modified>2025-04-29T14:59:04.196</Modified>
+      <Modified>2025-04-30T07:50:46.888</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
       <PackagePath>splashSplashScreen.scale-125.png</PackagePath>
-      <Modified>2025-04-29T14:59:04.212</Modified>
+      <Modified>2025-04-30T07:50:46.904</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
       <PackagePath>splashSplashScreen.scale-150.png</PackagePath>
-      <Modified>2025-04-29T14:59:04.290</Modified>
+      <Modified>2025-04-30T07:50:46.935</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
       <PackagePath>splashSplashScreen.scale-200.png</PackagePath>
-      <Modified>2025-04-29T14:59:04.462</Modified>
+      <Modified>2025-04-30T07:50:46.982</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
       <PackagePath>splashSplashScreen.scale-400.png</PackagePath>
-      <Modified>2025-04-29T14:59:04.743</Modified>
+      <Modified>2025-04-30T07:50:47.154</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
       <PackagePath>OpenSans-Regular.ttf</PackagePath>
@@ -583,7 +583,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\ApplicationFactory\zettelkasten\obj\x64\Debug\net8.0-windows10.0.19041.0\win10-x64\Zettelkasten.deps.json">
       <PackagePath>Zettelkasten.deps.json</PackagePath>
-      <Modified>2025-04-29T15:28:34.549</Modified>
+      <Modified>2025-04-30T08:02:12.887</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Asahi\.nuget\packages\microsoft.maui.controls.compatibility\8.0.100\lib\net8.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>

@@ -1,0 +1,8 @@
+クラス図作成手順
+
+plantUMLに出力する場合
+puml-gen F:\ApplicationFactory\zettelkasten F:\ApplicationFactory\zettelkasten\uml -dir -excludePaths bin,obj,Resorces,Properties,Platforms,.vs,.git,Zettelkasten -createAssociation
+
+
+.pulmファイルをpngに
+java -jar plantuml-gplv2-1.2025.2.jar *.puml

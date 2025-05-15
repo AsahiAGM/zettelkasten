@@ -11,6 +11,9 @@ using PlantUmlClassDiagramGenerator.SourceGenerator;
 using PlantUmlClassDiagramGenerator.SourceGenerator.Attributes;
 using System.Runtime.CompilerServices;
 
+using SQLite;
+using Zettelkasten.Models;
+
 namespace Zettelkasten
 {
     /// <summary>
@@ -49,7 +52,9 @@ namespace Zettelkasten
             }
 
             _dragAnchor = new Anchor(0, 0);
-            
+
+            var card = new TestCard();
+            card.Check();
         }     
         
         /// <summary>
@@ -115,15 +120,16 @@ namespace Zettelkasten
                 if (nextX < -1 * LimitWidth) nextX = -1 * LimitWidth;
 
                 // 移動後の座標をセット
-                if (CurrentTable.FlashCardDictionary.ContainsKey(rectangle))
+                FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(rectangle,out var key);
+                if ( key is not null && CurrentTable.FlashCardDictionary.ContainsKey(key))
                 {
-                    CurrentTable.FlashCardDictionary[rectangle].Translation(nextX, nextY);
+                    CurrentTable.FlashCardDictionary[key].Translation(nextX, nextY);
                 }
 
                 //Debug.WriteLine($"◆--- rectangle total moving [after] ({rectangle.TranslationX},{rectangle.TranslationY})");
 
                 // 再描画を要求
-                rectangle.Invalidate();
+                MainThread.InvokeOnMainThreadAsync(() => rectangle.Invalidate());
             }
         }
         
@@ -146,15 +152,24 @@ namespace Zettelkasten
         {
             var newCard = FlashCardFactory.GererateCard();
 
-            // CardObjectとTagのGraphicsViewをそれぞれ辞書に登録し、どちらからでもFlashCardを参照できるようにする
-            CurrentTable.FlashCardDictionary.Add(
-                newCard.CardObject.Background,
-                newCard
-                );
-            CurrentTable.FlashCardDictionary.Add(
-                newCard.Tag.Background,
-                newCard
-                );
+            // 先に生成されているカードのZIndexを調整
+            if( CurrentTable.FlashCardDictionary.Count > 0 )
+            {
+                foreach(var card in CurrentTable.FlashCardDictionary.Values)
+                {
+                    card.MoveLower();
+                }
+            }
+
+            FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(newCard.CardObject.Background, out var key);
+
+            // registrate dictionary
+            if( key is null )
+            {
+                Debug.WriteLine($"[ERROR][MainPage.GenerateKey()] Key not registered.");
+                return;
+            }
+            CurrentTable.FlashCardDictionary.Add( key,newCard );
         }
 
         /// <summary>
@@ -163,19 +178,17 @@ namespace Zettelkasten
         /// <param name="touchCard"></param>
         public static void ZIndexMove(GraphicsView touchCard)
         {
-            // タッチしたカード以外をのvalueを+1し、タッチしたカードは1(最小値)にする
-            foreach (var key in CurrentTable.FlashCardDictionary.Keys.ToList())
+            // 全てのカードを１つ下段に移す
+            foreach (var card in CurrentTable.FlashCardDictionary.Values.ToList())
             {
-                if (key.Id == touchCard.Id)
-                {
-                    // タッチしたカードを最上層に
-                    CurrentTable.FlashCardDictionary[touchCard].MoveTop();
-                }
-                else
-                {
-                    // タッチしたカード以外は下層に
-                    CurrentTable.FlashCardDictionary[key].MoveLower();
-                }
+                card.MoveLower();
+            }
+
+            FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(touchCard, out var key);
+            if(key is not null && CurrentTable.FlashCardDictionary.ContainsKey(key) )
+            {
+                // 触れたGraphicsが所属するカードを最上段へ
+                CurrentTable.FlashCardDictionary[key].MoveTop();
             }
         }
     }
@@ -206,11 +219,12 @@ namespace Zettelkasten
         public static int GenerateCardCount => table.GenerateCardCount;
 
         /// <summary>
-        /// 生成したFlashCardの辞書<br/>
-        /// key: GraphicsView
+        /// 生成したFlashCardの辞書<br/><br/>
+        /// key: GraphicsViewのGuid<br/>
+        /// Count: 生成されているカードの数に等しい
         /// </summary>
         [PlantUmlIgnoreAssociation]
-        public static Dictionary<GraphicsView, FlashCard> FlashCardDictionary => table.FlashCardDictionary;
+        public static Dictionary<FlashCardGuid, FlashCard> FlashCardDictionary => table.FlashCardDictionary;             
 
         /// <summary>
         /// 編集するテーブルを変更する<br/>
@@ -223,6 +237,8 @@ namespace Zettelkasten
 
         // テーブルの内容物を全てGridに反映させるメソッドを追加する必要がある
         // まだ新規テーブル作成を実装する段階じゃないので保留。
+
+
     }
 
     /// <summary>
@@ -250,10 +266,11 @@ namespace Zettelkasten
                 return RootList.Count();
             }
         }
-        
+
         /// <summary>
         /// このテーブルのルートカードのリスト
         /// </summary>
+        [PlantUmlIgnoreAssociation]
         public List<FlashCard> RootList
         {
             get
@@ -267,7 +284,7 @@ namespace Zettelkasten
         /// Key : GraphicsView<br/>
         /// </summary>
         [PlantUmlIgnoreAssociation]
-        public Dictionary<GraphicsView, FlashCard> FlashCardDictionary = new();
+        public Dictionary<FlashCardGuid, FlashCard> FlashCardDictionary = new();
 
         /// <summary>
         /// このテーブルの所属Grid
@@ -278,6 +295,29 @@ namespace Zettelkasten
         {
             Id = Guid.NewGuid();
             ParentGrid = parent;
+        }
+        /// <summary>
+        /// 現在のTagのツリー構造をIdに反映
+        /// </summary>
+        public void RootIdRegenerate()
+        {
+            int rootId = 1;
+            foreach (var card in FlashCardDictionary.Values)
+            {
+                int id = 1;
+                card.Tag.RootId = rootId;
+
+                foreach (var child in card.Tag.Children)
+                {
+                    child.RootId = id;
+                    id++;
+                }
+
+                rootId++;
+
+                card.Tag.Reload();
+                Debug.WriteLine($"{card.CardObject.Id} have rootId [{card.RootId}]");
+            }
         }
 
         public override int GetHashCode()
@@ -310,7 +350,7 @@ namespace Zettelkasten
             var property = new FlashCardProperty();
             var _graphicsView = new GraphicsView();
             
-            var _drawable = new DraggableGraphics(property, _graphicsView);
+            var _drawable = new FlashCardGraphics(property, _graphicsView);
 
             _graphicsView.Drawable = _drawable;           
             _graphicsView.WidthRequest = _drawable.property.CardWidth;
@@ -319,10 +359,23 @@ namespace Zettelkasten
             // application windows resize event hundler
             _graphicsView.SizeChanged += (s, e) =>
             {
+                /*
+                double TextboxSize_FIX_X = 20;
+                double TextboxSize_FIX_Y = 20;
+
+                FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(_graphicsView, out var key);
+                if (!CurrentTable.FlashCardDictionary.ContainsKey(key))
+                {
+                    Debug.WriteLine($"◆[ERROR][FlashCardFactory] _graphicsView.StartInteraction : {_graphicsView} is no registrated");
+                    return;
+                }
+
                 // span Textbox               
-                var card = CurrentTable.FlashCardDictionary[_graphicsView];
-                card.CardObject.Textbox.WidthRequest = _graphicsView.WidthRequest - 10f;
-                card.CardObject.Textbox.HeightRequest = _graphicsView.HeightRequest - 20f;               
+                var card = CurrentTable.FlashCardDictionary[key];
+                card.CardObject.Textbox.WidthRequest = _graphicsView.WidthRequest - TextboxSize_FIX_X;
+                card.CardObject.Textbox.HeightRequest = _graphicsView.HeightRequest - TextboxSize_FIX_Y;               
+                */
+
 
                 // Invalidate
                 _graphicsView.IsVisible = true;
@@ -335,10 +388,18 @@ namespace Zettelkasten
                 //Debug.WriteLine($"◆ Touch Card obj");
                 var graph = s as GraphicsView;
                 if (graph is null) return;
-                var draggable = graph.Drawable as DraggableGraphics;
+                var draggable = graph.Drawable as FlashCardGraphics;
                 if (draggable is null) return;
 
-                Debug.WriteLine($"◆[CardObject .StartInteraction] Touch {CurrentTable.FlashCardDictionary[graph].CardObject.Id}");
+                // get key
+                FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(_graphicsView, out var key);
+                if (key is null ||  !CurrentTable.FlashCardDictionary.ContainsKey(key))
+                {
+                    Debug.WriteLine($"◆[ERROR][FlashCardFactory] _graphicsView.StartInteraction : {_graphicsView} is no registrated");
+                    return;
+                }
+
+                Debug.WriteLine($"◆[CardObject .StartInteraction] Touch {CurrentTable.FlashCardDictionary[key].CardObject.Id}");
 
                 // debug position
                 var touchX = e.Touches[0].X + graph.TranslationX; // タッチされたX座標
@@ -360,15 +421,22 @@ namespace Zettelkasten
                 if (touchX >= buttonArea.Left && touchX <= buttonArea.Right && touchY >= buttonArea.Top && touchY <= buttonArea.Bottom)
                 {
                     //Debug.WriteLine($"◆!!!--- touched delete button");                   
-                    var flashCard = CurrentTable.FlashCardDictionary[graph];
-                    var list = grid.Children.ToList();
+                    var flashCard = CurrentTable.FlashCardDictionary[key];
 
-                    list.RemoveAll(x => flashCard.GetViewModel().Contains(x));
-                    CurrentTable.FlashCardDictionary.Remove(graph);
+                    foreach (var viewModel in flashCard.GetViewModel())
+                    {
+                        grid.Children.Remove(viewModel);
+                    }
+
+                    CurrentTable.FlashCardDictionary.Remove(key);// FlashCardなくなる->CobjとTagもなくなる->CWTableからも消える
 
                     graph.Drawable = null;
                     graph.GestureRecognizers.Clear();
-                    graph = null;                   
+                    graph = null;
+
+                    // id regenerate
+                    CurrentTable.table.RootIdRegenerate();
+
                     return;
                 }
 
@@ -386,10 +454,18 @@ namespace Zettelkasten
             var txbox = GenerateTextBox(_graphicsView, property);
 
             txbox.FontSize = property.TextFontSize;
+            txbox.HeightRequest = property.TextBoxHeight;
+            txbox.WidthRequest = property.TextBoxWidth;
 
             txbox.SizeChanged += (s, e) =>
             {
-                var card = CurrentTable.FlashCardDictionary[_graphicsView];
+                FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(_graphicsView, out var key);
+                if (key is null || !CurrentTable.FlashCardDictionary.ContainsKey(key))
+                {
+                    Debug.WriteLine($"◆[ERROR][Tag] Tag Handle  _graphicsVie.SizeChanged : {_graphicsView} is no registrated");
+                    return;
+                }
+                var card = CurrentTable.FlashCardDictionary[key];
 
                 Debug.WriteLine($"◆[CardObject] .SizeChanged: Editor size changed [{_graphicsView.Id}]");
                 Debug.WriteLine($"◆[CardObject]--- GraphicsView request  : ({_graphicsView.WidthRequest},{_graphicsView.HeightRequest})");
@@ -398,11 +474,15 @@ namespace Zettelkasten
                 Debug.WriteLine($"◆[CardObject]--- Editor request        : ({card.CardObject.Textbox.WidthRequest},{card.CardObject.Textbox.HeightRequest})");
                 Debug.WriteLine($"◆[CardObject]--- Editor size           : ({card.CardObject.Textbox.Width},{card.CardObject.Textbox.Height})");
                 Debug.WriteLine($"◆[CardObject]--- Editor position       : ({card.CardObject.TranslationX},{card.CardObject.Textbox.TranslationY})");
+
+                // Invalidate
+                _graphicsView.IsVisible = true;
+                MainThread.InvokeOnMainThreadAsync(() => _graphicsView.Invalidate());
             };
 
             // generate FlashCard           
             var cardObject = new CardObject(_graphicsView, txbox, property);
-            var tag = new Tag(cardObject, property, GenerateTextBox);
+            var tag = new Tag(cardObject, property);
             var flashcard = new FlashCard(cardObject, tag);   
 
             // set grid           
@@ -454,23 +534,48 @@ namespace Zettelkasten
     /// </summary>
     public class FlashCardProperty
     {
+        public float CardHeight { get; set; } = 150f;
+        public float CardWidth { get; set; } = 350f;
+        [PlantUmlIgnoreAssociation]
+        public Color CardBackgroundColor { get; set; } = Colors.White;
+
+        public float TextBoxHeight { get; set; } = 110f;
+        public float TextBoxWidth { get; set; } = 300f;
         public int TextFontSize { get; set; } = 16;
         [PlantUmlIgnoreAssociation]
         public Color TextFontColor { get; set; } = Colors.Black;
         [PlantUmlIgnoreAssociation]
         public Color TextBoxBackGround { get; set; } = Colors.Transparent;
 
-        public float TagHeight { get; set; } = 50f;
-        public float TagWidth { get; set; } = 100f;
+        public float TagHeight { get; set; } = 44f;
+        public float TagWidth { get; set; } = 80f;
         public int TagFontSize { get; set; } = 10;
         [PlantUmlIgnoreAssociation]
         public Color TagFontColor { get; set; } = Colors.Black;
-
-        public float CardHeight { get; set; } = 150f;
-        public float CardWidth { get; set; } = 350f;
         [PlantUmlIgnoreAssociation]
-        public Color CardBackgroundColor { get; set; } = Colors.White;
+        public Color TagBackGround { get; set; } = Colors.Transparent;
+
+        
         public FlashCardProperty() { }
+    }
+    /// <summary>
+    /// GraphicsViewからFlashCardを取得するためのKey
+    /// </summary>
+    public class FlashCardGuid
+    {
+        /// <summary>
+        /// FlashCardの正規化キー
+        /// </summary>
+        [PlantUmlIgnoreAssociation]
+        public Guid id;
+
+        /// <summary>
+        /// FlashCardの正規化キーの辞書<br/>
+        /// key: GraphicsView
+        /// </summary>
+        [PlantUmlIgnoreAssociation]
+        public static ConditionalWeakTable<GraphicsView, FlashCardGuid> FlashCardGuidKeyDict = new();
+        public FlashCardGuid(Guid _id) { id = _id; }
     }
 
     /// <summary>
@@ -486,6 +591,11 @@ namespace Zettelkasten
         /// タグと表示窓
         /// </summary>
         public Tag Tag { get; } = null!;
+        /// <summary>
+        /// Cardの固有Id (CardObjectの固有Id)
+        /// </summary>
+        [PlantUmlIgnoreAssociation]
+        public Guid guid => CardObject.Id;
         /// <summary>
         /// このカードのRootId
         /// </summary>
@@ -512,8 +622,8 @@ namespace Zettelkasten
             CardObject = cardObject;
             Tag = tag;
 
+            GenerateKey();
             MoveTop();
-
         }
         /// <summary>
         /// 要素を最上段に移動
@@ -523,7 +633,7 @@ namespace Zettelkasten
             ZIndex = new List<ViewIndexPair>()
             {
                 new ViewIndexPair(0, CardObject.Textbox),
-                new ViewIndexPair(1, Tag.Textbox),
+                new ViewIndexPair(1, Tag.Label),
                 new ViewIndexPair(2, CardObject.Background),
                 new ViewIndexPair(3, Tag.Background)
             };
@@ -565,7 +675,7 @@ namespace Zettelkasten
                 CardObject.Background,
                 CardObject.Textbox,
                 Tag.Background,
-                Tag.Textbox
+                Tag.Label
             };
         }
         /// <summary>
@@ -582,6 +692,17 @@ namespace Zettelkasten
             Debug.WriteLine($"--- CardObject ({CardObject.TranslationX},{CardObject.TranslationY})");
             Debug.WriteLine($"--- Tag        ({Tag.TranslationX},{Tag.TranslationY})");
         }
+        /// <summary>
+        /// 辞書に登録するためのKeyを発行する
+        /// </summary>
+        /// <returns></returns>
+
+        void GenerateKey()
+        {
+            var key = new FlashCardGuid( new Guid() );
+            FlashCardGuid.FlashCardGuidKeyDict.Add(CardObject.Background, (key) );
+            FlashCardGuid.FlashCardGuidKeyDict.Add(Tag.Background, key );
+        }
 
         /// <summary>
         /// View and Index Container
@@ -589,6 +710,7 @@ namespace Zettelkasten
         public class ViewIndexPair
         {
             public int Index { get; internal set; }
+            [PlantUmlIgnoreAssociation]
             public View ViewModel { get; } = null!;
             public ViewIndexPair(int index, View viewModel)
             {
@@ -685,7 +807,7 @@ namespace Zettelkasten
         /// ChildrenにおけるId<br/><br/>
         /// ・-1：未所属の浮いた状態。ロジックエラーである可能性あり
         /// </summary>
-        public int RootId { get; private set; }
+        public int RootId { get; set; }
         /// <summary>
         /// このタグがルートタグか否か
         /// </summary>
@@ -707,7 +829,7 @@ namespace Zettelkasten
         /// <summary>
         /// このタグの表示用オブジェクト
         /// </summary>
-        public Editor Textbox { get; } = null!;
+        public Label Label { get; } = null!;
         /// <summary>
         /// このタグの書式設定
         /// </summary>
@@ -716,6 +838,15 @@ namespace Zettelkasten
         /// 表示する文字
         /// </summary>
         string tagString => GetTagId();
+
+        /// <summary>
+        /// TagのY座標のオフセット<br/>
+        /// </summary>
+        const double TAG_PADDING_Y = 5d;
+        /// <summary>
+        /// Tag.LabelのY座標のオフセット<br/>
+        /// </summary>
+        const double LABEL_PADDING_Y = -5d;
 
         /// <summary>
         /// X座標
@@ -757,7 +888,7 @@ namespace Zettelkasten
             }
         }
 
-        public Tag(CardObject cobj, FlashCardProperty property, Func<GraphicsView, FlashCardProperty, Editor> GenerateTextBox)
+        public Tag(CardObject cobj, FlashCardProperty property)
         {
             // init
             Id = Guid.NewGuid();
@@ -765,57 +896,104 @@ namespace Zettelkasten
             RootId = CurrentTable.table.RootCardCount + 1;
             Property = property;
 
-            // fix const
-            const double TAG_OFFSET = 10;
-
             // set ViewModel
             var _graphicsView = new GraphicsView();
-            var _drawable = new DraggableGraphics(property, _graphicsView, false);
+            var _drawable = new FlashCardGraphics(property, _graphicsView, false);
             _graphicsView.Drawable = _drawable;
             
             _graphicsView.WidthRequest = property.TagWidth;
             _graphicsView.HeightRequest = property.TagHeight;
             _graphicsView.TranslationX = (cobj.TranslationX - cobj.Background.WidthRequest / 2) + Property.TagWidth / 2;
-            _graphicsView.TranslationY = (cobj.TranslationY - cobj.Background.HeightRequest / 2) - TAG_OFFSET;
+            _graphicsView.TranslationY = (cobj.TranslationY - cobj.Background.HeightRequest / 2) + TAG_PADDING_Y;
+
+            var _label = GenerateLabel(cobj);
+            _label.FontSize = property.TagFontSize;
 
             // application windows resize event hundler
             _graphicsView.SizeChanged += (s, e) =>
             {
-                if( !CurrentTable.FlashCardDictionary.ContainsKey(_graphicsView) )
+                FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(_graphicsView, out var key);
+                if (key is null || !CurrentTable.FlashCardDictionary.ContainsKey( key ) )
                 {
-                    Debug.WriteLine($"◆[ERROR] Tag Handle .SizeChanged : {_graphicsView} is no registrated");
+                    Debug.WriteLine($"◆[ERROR][Tag] Tag Handle  _graphicsVie.SizeChanged : {_graphicsView} is no registrated");
                     return;
                 }
 
                 // span Textbox               
-                var card = CurrentTable.FlashCardDictionary[_graphicsView]; // KeyNotFoundExceptionが発生する場合がある 0429
-                card.Tag.Textbox.WidthRequest = _graphicsView.WidthRequest - 10f;
-                card.Tag.Textbox.HeightRequest = _graphicsView.HeightRequest - 20f;                            
+                var card = CurrentTable.FlashCardDictionary[key]; // KeyNotFoundExceptionが発生する場合がある 0429
+                card.Tag.Label.WidthRequest = _graphicsView.WidthRequest - 10f;
+                card.Tag.Label.HeightRequest = _graphicsView.HeightRequest - 20f;                            
 
                 // Invalidate
                 _graphicsView.IsVisible = true;
                 MainThread.InvokeOnMainThreadAsync(() => _graphicsView.Invalidate());               
-            };
+            };           
 
-            var _txbox = GenerateTextBox(_graphicsView, property);
-
-            _txbox.FontSize = property.TagFontSize;
-
-            _txbox.SizeChanged += (s, e) =>
+            _label.SizeChanged += (s, e) =>
             {
-                var card = CurrentTable.FlashCardDictionary[_graphicsView];
+                FlashCardGuid.FlashCardGuidKeyDict.TryGetValue(_graphicsView, out var key);
+                if (key is null || !CurrentTable.FlashCardDictionary.ContainsKey(key))
+                {
+                    Debug.WriteLine($"◆[ERROR][Tag] Tag Handle  _label.SizeChanged : {_graphicsView} is no registrated");
+                    return;
+                }
+                var card = CurrentTable.FlashCardDictionary[key];
 
                 Debug.WriteLine($"◆[Tag] .SizeChanged: Editor size changes [{_graphicsView.Id}]");
                 Debug.WriteLine($"◆[Tag]--- GraphicsView request  : ({_graphicsView.WidthRequest},{_graphicsView.HeightRequest})");
                 Debug.WriteLine($"◆[Tag]--- GraphicsView size     : ({_graphicsView.Width},{_graphicsView.Height})");
                 Debug.WriteLine($"◆[Tag]--- GraphicsView position : ({_graphicsView.X},{_graphicsView.Y})");
-                Debug.WriteLine($"◆[Tag]--- Editor request        : ({card.Tag.Textbox.WidthRequest},{card.Tag.Textbox.HeightRequest})");
-                Debug.WriteLine($"◆[Tag]--- Editor size           : ({card.Tag.Textbox.Width},{card.Tag.Textbox.Height})");
-                Debug.WriteLine($"◆[Tag]--- Editor position       : ({card.Tag.Textbox.TranslationX},{card.Tag.Textbox.TranslationY})");
+                Debug.WriteLine($"◆[Tag]--- Label request         : ({card.Tag.Label.WidthRequest},{card.Tag.Label.HeightRequest})");
+                Debug.WriteLine($"◆[Tag]--- Label size            : ({card.Tag.Label.Width},{card.Tag.Label.Height})");
+                Debug.WriteLine($"◆[Tag]--- Label position        : ({card.Tag.Label.TranslationX},{card.Tag.Label.TranslationY})");
+
+                // Invalidate
+                _graphicsView.IsVisible = true;
+                MainThread.InvokeOnMainThreadAsync(() => _graphicsView.Invalidate());
             };
 
+            var gesture = new TapGestureRecognizer();
+            gesture.Tapped += (s, e) =>
+            {
+                // プルダウンリストを表示
+                Debug.WriteLine("label tapped");
+            };
+
+            _label.GestureRecognizers.Add(gesture);
+
+            // initialize
             Background = _graphicsView;
-            Textbox = _txbox;
+            Label = _label;
+        }
+        /// <summary>
+        /// Labelを生成
+        /// </summary>
+        /// <returns></returns>
+        public Label GenerateLabel(CardObject card)
+        {
+            // Label init
+            var label = new Label()
+            {
+                Text = tagString,
+                TranslationX = (card.TranslationX - card.Background.WidthRequest / 2) + Property.TagWidth / 2,
+                TranslationY = (card.TranslationY - card.Background.HeightRequest / 2) + LABEL_PADDING_Y,
+                BackgroundColor = Property.TagBackGround,
+                TextColor = Property.TagFontColor,
+                FontSize = Property.TagFontSize,
+                VerticalTextAlignment = TextAlignment.Start,
+                HorizontalTextAlignment = TextAlignment.Center,
+                IsVisible = true,
+                IsEnabled = true,
+            };
+
+            return label;
+        }
+        /// <summary>
+        /// タグ情報の更新
+        /// </summary>
+        public void Reload()
+        {
+            Label.Text = tagString;
         }
 
         /// <summary>
@@ -836,14 +1014,11 @@ namespace Zettelkasten
         /// <param name="Cobj"></param>
         public void Translation(CardObject Cobj)
         {
-            const double TAG_OFFSET = 10d;
-            const double TEXTBOX_FIXY = 5d;
-
             TranslationX = (Cobj.TranslationX - Cobj.Background.WidthRequest / 2) + Property.TagWidth / 2;
-            TranslationY = (Cobj.TranslationY - Cobj.Background.HeightRequest / 2) - TAG_OFFSET;
+            TranslationY = (Cobj.TranslationY - Cobj.Background.HeightRequest / 2) + TAG_PADDING_Y;
 
-            Textbox.TranslationX = (Cobj.TranslationX - Cobj.Background.WidthRequest / 2) + Property.TagWidth / 2;
-            Textbox.TranslationY = (Cobj.TranslationY - Cobj.Background.HeightRequest / 2) - TAG_OFFSET + TEXTBOX_FIXY;
+            Label.TranslationX = (Cobj.TranslationX - Cobj.Background.WidthRequest / 2) + Property.TagWidth / 2;
+            Label.TranslationY = (Cobj.TranslationY - Cobj.Background.HeightRequest / 2) + LABEL_PADDING_Y;
         }
         /// <summary>
         /// 表示用のIdを作成
@@ -866,12 +1041,12 @@ namespace Zettelkasten
             return string.Join("-", li);
         }
         /// <summary>
-        /// 親となるタグを変更<br/>
+        /// 親となるタグを変更<br/><br/>
         /// ・指定しない場合はこのタグが新たなルートタグとなる
         /// </summary>
         /// <param name="newParent"></param>
         /// <returns></returns>
-        public Tag? ChangeParent(Tag? newParent = null)
+        public Tag? ChangeRoot(Tag? newParent = null,int newId = 0)
         {
             if (newParent is null)
             {
@@ -882,8 +1057,18 @@ namespace Zettelkasten
             }
 
             Parent = newParent;
-            Parent.Children.Add(this);
-            RootId = Parent.Children.Count();
+
+            // 0 または配列外を指定した場合は最後尾に追加
+            if ( newId == 0 || newId >= Parent.Children.Count() )
+            {
+                Parent.Children.Add(this);               
+            }
+            else
+            {
+                Parent.Children.Insert(newId-1,this);
+            }
+
+            RootId = newId;
 
             return newParent;
         }
@@ -952,7 +1137,7 @@ namespace Zettelkasten
 
 
     }
-    public class DraggableGraphics : IDrawable
+    public class FlashCardGraphics : IDrawable
     {
         /// <summary>
         /// 親のGraphicsView
@@ -976,7 +1161,7 @@ namespace Zettelkasten
         /// </summary>
         bool IsCard = true;
 
-        public DraggableGraphics(FlashCardProperty _property, GraphicsView parent, bool isCard = true)
+        public FlashCardGraphics(FlashCardProperty _property, GraphicsView parent, bool isCard = true)
         {
             parentView = parent;
             property = _property;
@@ -999,7 +1184,7 @@ namespace Zettelkasten
                 Debug.WriteLine($"◆--- Card Draw at Position({dirtyRect.X},{dirtyRect.Y}),Size({dirtyRect.Width},{dirtyRect.Height})");
 
                 // 枠線の色と線幅を設定
-                canvas.StrokeColor = Colors.RosyBrown;
+                canvas.StrokeColor = Colors.Transparent;
                 canvas.StrokeSize = 0.2f; // 線の太さ
                 canvas.DrawRoundedRectangle(dirtyRect.X, dirtyRect.Y, dirtyRect.Width - OFFSET, dirtyRect.Height - OFFSET, _corner - 1f);
 
