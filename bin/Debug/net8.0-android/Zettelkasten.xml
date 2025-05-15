@@ -1,0 +1,552 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zettelkasten</name>
+    </assembly>
+    <members>
+        <member name="T:Zettelkasten.MainPage">
+            <summary>
+            UIとイベント
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.MainPage.Instance">
+            <summary>
+            singleton instance
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.MainPage._dragAnchor">
+            <summary>
+            ドラッグ移動を開始した際の基準点
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.MainPage.#ctor">
+            <summary>
+            作成したテーブルと生成カードリストの辞書
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.MainPage.OnNavigatedTo(Microsoft.Maui.Controls.NavigatedToEventArgs)">
+            <summary>
+            MainPageが初期化された際に一度だけ呼ばれるメソッド
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Zettelkasten.MainPage.GenerateCard">
+            <summary>
+            AppShellから呼ばれるカード生成メソッド<br/>
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.MainPage.ZIndexMove(Microsoft.Maui.Controls.GraphicsView)">
+            <summary>
+            カードのイベントハンドラに委譲する階層移動<br/>
+            </summary>
+            <param name="touchCard"></param>
+        </member>
+        <member name="T:Zettelkasten.CurrentTable">
+            <summary>
+            ユーザーがインスタンスしたデータ(SQLite実装後はそちらに委譲)
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.CurrentTable.table">
+            <summary>
+            表示中のテーブル
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.CurrentTable.TableDictionary">
+            <summary>
+            作成したテーブルの辞書
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.CurrentTable.MainPageContent">
+            <summary>
+            現在のTableが所属するGrid<br/>
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.CurrentTable.GenerateCardCount">
+            <summary>
+            生成したカードの数
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.CurrentTable.FlashCardDictionary">
+            <summary>
+            生成したFlashCardの辞書<br/><br/>
+            key: GraphicsViewのGuid<br/>
+            Count: 生成されているカードの数に等しい
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.CurrentTable.ChangeTable(System.Int32)">
+            <summary>
+            編集するテーブルを変更する<br/>
+            </summary>
+            <param name="tableId"></param>
+        </member>
+        <member name="T:Zettelkasten.Table">
+            <summary>
+            カードとテキストのコンテナクラス
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Table.Id">
+            <summary>
+            固有ID 
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Table.GenerateCardCount">
+            <summary>
+            生成したFlashCardの累計数
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Table.RootCardCount">
+            <summary>
+            このテーブルのルートの数
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Table.RootList">
+            <summary>
+            このテーブルのルートカードのリスト
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.Table.FlashCardDictionary">
+            <summary>
+            生成したFlashCardの辞書<br/>
+            Key : GraphicsView<br/>
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.Table.ParentGrid">
+            <summary>
+            このテーブルの所属Grid
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.Table.RootIdRegenerate">
+            <summary>
+            現在のTagのツリー構造をIdに反映
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.FlashCardFactory">
+            <summary>
+            単語カード生成クラス<br/>
+             ・MainPage.Component は Grid であり、IViewインスタンスを都度.Addする必要がある。<br/>
+             ・カードとタグの GraphicsView および Entry を１個ずつ順に出力する<br/>
+             ・出力したカードとタグの構造体を Dictionary で管理。ZIndex を振り分けるためのレイヤーレベルを辞書化する
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.FlashCardFactory.GenerateTextBox(Microsoft.Maui.Controls.GraphicsView,Zettelkasten.FlashCardProperty)">
+            <summary>
+            テキスト入力フォームの生成<br/>
+            </summary>
+            <param name="graph"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zettelkasten.FlashCardProperty">
+            <summary>
+            FlashCardの描画および書式の設定
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.FlashCardGuid">
+            <summary>
+            GraphicsViewからFlashCardを取得するためのKey
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.FlashCardGuid.id">
+            <summary>
+            FlashCardの正規化キー
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.FlashCardGuid.FlashCardGuidKeyDict">
+            <summary>
+            FlashCardの正規化キーの辞書<br/>
+            key: GraphicsView
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.FlashCard">
+            <summary>
+            CardObjectとTagのコンテナ
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.CardObject">
+            <summary>
+            単語カードとテキストボックス
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.Tag">
+            <summary>
+            タグと表示窓
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.guid">
+            <summary>
+            Cardの固有Id (CardObjectの固有Id)
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.RootId">
+            <summary>
+            このカードのRootId
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.IsRoot">
+            <summary>
+            このカードがルートか否か
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.TranslationX">
+            <summary>
+            X座標(CardObject由来)
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.TranslationY">
+            <summary>
+            Y座標(CardObject由来)
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.FlashCard.ZIndex">
+            <summary>
+            ViewModelとZIndexのペアリスト
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.FlashCard.MoveTop">
+            <summary>
+            要素を最上段に移動
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.FlashCard.MoveLower">
+            <summary>
+            要素を下段に移動
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.FlashCard.CalcZIndex">
+            <summary>
+            IViewのZIndexを再計算
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.FlashCard.GetViewModel">
+            <summary>
+            カードを構成する描画要素(View)を取得<br/><br/>
+            ・Gridに参照させる際に使用(AddRanage,RemoveAllの適用)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.FlashCard.Translation(System.Double,System.Double)">
+            <summary>
+            ViewModelの座標移動
+            </summary>
+            <param name="nextX"></param>
+            <param name="nextY"></param>
+        </member>
+        <member name="M:Zettelkasten.FlashCard.GenerateKey">
+            <summary>
+            辞書に登録するためのKeyを発行する
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Zettelkasten.FlashCard.ViewIndexPair">
+            <summary>
+            View and Index Container
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.CardObject.Id">
+            <summary>
+            固有Id
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.CardObject.Background">
+            <summary>
+            単語カードの参照
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.CardObject.Textbox">
+            <summary>
+            テキストボックス
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.CardObject.Property">
+            <summary>
+            書式設定
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.CardObject.Translation(System.Double,System.Double)">
+            <summary>
+            ViewModelの座標移動
+            </summary>
+            <param name="nextX"></param>
+            <param name="nextY"></param>
+        </member>
+        <member name="M:Zettelkasten.CardObject.Equals(Zettelkasten.CardObject)">
+            <summary>
+            IEquatable.Equals
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.CardObject.GetHashCode">
+            <summary>
+            GetHash from Guid
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Zettelkasten.Tag">
+            <summary>
+            FlashCardをツリー構造で管理するためのタグ
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.Id">
+            <summary>
+            オブジェクトの固有Id
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.RootId">
+            <summary>
+            ChildrenにおけるId<br/><br/>
+            ・-1：未所属の浮いた状態。ロジックエラーである可能性あり
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.IsRoot">
+            <summary>
+            このタグがルートタグか否か
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.CardObject">
+            <summary>
+            このタグが管理するFlashCard
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.Background">
+            <summary>
+            このタグの図形描画用オブジェクト
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.Label">
+            <summary>
+            このタグの表示用オブジェクト
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.Property">
+            <summary>
+            このタグの書式設定
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.tagString">
+            <summary>
+            表示する文字
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.Tag.TAG_PADDING_Y">
+            <summary>
+            TagのY座標のオフセット<br/>
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.Tag.LABEL_PADDING_Y">
+            <summary>
+            Tag.LabelのY座標のオフセット<br/>
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.TranslationX">
+            <summary>
+            X座標
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.TranslationY">
+            <summary>
+            Y座標
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.Parent">
+            <summary>
+            親のTag<br/>
+            ・null: このタグがルートタグである時
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.Tag._children">
+            <summary>
+            private children list
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.Tag.Children">
+            <summary>
+            子のタグのリスト<br/>
+            ・Listは遅延初期化
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.Tag.GenerateLabel(Zettelkasten.CardObject)">
+            <summary>
+            Labelを生成
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Tag.Reload">
+            <summary>
+            タグ情報の更新
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.Tag.Traverse">
+            <summary>
+            タグの再帰取得(深さ優先)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Tag.Translation(Zettelkasten.CardObject)">
+            <summary>
+            ViewModelの座標移動
+            </summary>
+            <param name="Cobj"></param>
+        </member>
+        <member name="M:Zettelkasten.Tag.GetTagId">
+            <summary>
+            表示用のIdを作成
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Tag.ChangeRoot(Zettelkasten.Tag,System.Int32)">
+            <summary>
+            親となるタグを変更<br/><br/>
+            ・指定しない場合はこのタグが新たなルートタグとなる
+            </summary>
+            <param name="newParent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Tag.MoveIdInChildren(System.Int32)">
+            <summary>
+            現在の階層における順番を変更する
+            </summary>
+            <param name="newId"></param>
+        </member>
+        <member name="M:Zettelkasten.Tag.ResetRootId">
+            <summary>
+            RootIdを振り直す
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.Tag.RemoveChild(Zettelkasten.Tag)">
+            <summary>
+            直下の任意の子タグを削除する
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Tag.Equals(Zettelkasten.Tag)">
+            <summary>
+            IEquatable.Equals
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Tag.GetHashCode">
+            <summary>
+            GetHash from Guid
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Zettelkasten.DraggableGraphics.parentView">
+            <summary>
+            親のGraphicsView
+            </summary>
+        </member>
+        <member name="P:Zettelkasten.DraggableGraphics.property">
+            <summary>
+            書式設定
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.DraggableGraphics._corner">
+            <summary>
+            角の丸さ(Card)
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.DraggableGraphics._cornerTag">
+            <summary>
+            角の丸さ(Tag)
+            </summary>
+        </member>
+        <member name="F:Zettelkasten.DraggableGraphics.IsCard">
+            <summary>
+            CardObjectか否か<br/><br/>
+            ・false: Tag用
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.Anchor">
+            <summary>
+            オブジェクトを移動させる際の基準点
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.Models.Card">
+            <summary>
+            FlashCardのデータモデル
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.Models.TreeTag">
+            <summary>
+            ツリー構造のための整数タグ
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.Models.TagCategory">
+            <summary>
+            意味タグをカテゴリ分けするためのクラス
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.Models.MeaningTag">
+            <summary>
+            意味タグ
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.Models.CardTag">
+            <summary>
+            複合主キーのための中間テーブル<br/><br/>
+            CardId + TagId を複合キーにするのが理想ですが、sqlite-net-pcl は複合主キー非対応のため、Id を追加しています。
+            </summary>
+        </member>
+        <member name="T:Zettelkasten.Models.TestCard">
+            <summary>
+            MainPageからアクセスできるかどうかテストするためのクラス
+            </summary>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseService.SaveCardAsync(Zettelkasten.Models.Card)">
+            <summary>
+            カードを保存するメソッド
+            </summary>
+            <param name="card"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseService.GetCardAsync(System.Int32)">
+            <summary>
+            カードをIDで取得するメソッド
+            </summary>
+            <param name="cardId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseService.GetAllCardsAsync">
+            <summary>
+            すべてのカードを取得するメソッド
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseService.AddCardTagAsync(Zettelkasten.Models.CardTag)">
+            <summary>
+            カードにタグを追加するメソッド
+            </summary>
+            <param name="cardTag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseService.GetCardsByTagAsync(System.Int32)">
+            <summary>
+            特定のタグを持つカードを取得するメソッド
+            </summary>
+            <param name="tagId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseService.SaveMeaningTagAsync(Zettelkasten.Models.MeaningTag)">
+            <summary>
+            MeaningAndTagを保存するメソッド
+            </summary>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseService.GetCardByIdAsync(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="cardId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zettelkasten.Service.DatabaseServiceTests.SaveCardAsync_ShouldInsertCardCorrectly">
+            <summary>
+            保存と取得のテスト
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1 @@
+F:\ApplicationFactory\zettelkasten\Zettelkasten.csproj;x64
