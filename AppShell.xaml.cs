@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Zettelkasten.ViewModels;
 
 namespace Zettelkasten
 {
@@ -12,7 +13,7 @@ namespace Zettelkasten
         // 新規カードを生成するボタンがクリックされたときの処理
         private void OnAddCardClicked(object sender, EventArgs e)
         {
-            MainPage.GenerateCard();
+            MainPageViewModel.GenerateCard();
         }
 
         // メニューボタンがクリックされたときの処理

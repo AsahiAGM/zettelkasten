@@ -432,27 +432,27 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="F:Zettelkasten.DraggableGraphics.parentView">
+        <member name="F:Zettelkasten.FlashCardGraphics.parentView">
             <summary>
             親のGraphicsView
             </summary>
         </member>
-        <member name="P:Zettelkasten.DraggableGraphics.property">
+        <member name="P:Zettelkasten.FlashCardGraphics.property">
             <summary>
             書式設定
             </summary>
         </member>
-        <member name="F:Zettelkasten.DraggableGraphics._corner">
+        <member name="F:Zettelkasten.FlashCardGraphics._corner">
             <summary>
             角の丸さ(Card)
             </summary>
         </member>
-        <member name="F:Zettelkasten.DraggableGraphics._cornerTag">
+        <member name="F:Zettelkasten.FlashCardGraphics._cornerTag">
             <summary>
             角の丸さ(Tag)
             </summary>
         </member>
-        <member name="F:Zettelkasten.DraggableGraphics.IsCard">
+        <member name="F:Zettelkasten.FlashCardGraphics.IsCard">
             <summary>
             CardObjectか否か<br/><br/>
             ・false: Tag用

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\ApplicationFactory\\zettelkasten\\Zettelkasten.csproj": {}
+    "F:\\ApplicationFactory\\zettelkasten\\zettelkasten\\Zettelkasten.csproj": {}
   },
   "projects": {
-    "F:\\ApplicationFactory\\zettelkasten\\Zettelkasten.csproj": {
+    "F:\\ApplicationFactory\\zettelkasten\\zettelkasten\\Zettelkasten.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\ApplicationFactory\\zettelkasten\\Zettelkasten.csproj",
+        "projectUniqueName": "F:\\ApplicationFactory\\zettelkasten\\zettelkasten\\Zettelkasten.csproj",
         "projectName": "Zettelkasten",
-        "projectPath": "F:\\ApplicationFactory\\zettelkasten\\Zettelkasten.csproj",
+        "projectPath": "F:\\ApplicationFactory\\zettelkasten\\zettelkasten\\Zettelkasten.csproj",
         "packagesPath": "C:\\Users\\Asahi\\.nuget\\packages\\",
-        "outputPath": "F:\\ApplicationFactory\\zettelkasten\\obj\\",
+        "outputPath": "F:\\ApplicationFactory\\zettelkasten\\zettelkasten\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [

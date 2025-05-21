@@ -1,1 +1,0 @@
-F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-ios\iossimulator-x64\publish\Zettelkasten.deps.json

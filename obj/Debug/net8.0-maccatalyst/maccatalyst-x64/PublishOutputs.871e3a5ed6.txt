@@ -1,1 +1,0 @@
-F:\ApplicationFactory\zettelkasten\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\publish\Zettelkasten.deps.json

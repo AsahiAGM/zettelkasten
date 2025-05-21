@@ -40,13 +40,13 @@ namespace Zettelkasten.Service
             var result = await DatabaseService.SaveCardAsync(newCard);
 
             // Assert: ちゃんと保存されたか
-            Assert.True(result > 0, "カードの保存に失敗しました");
+            Xunit.Assert.True(result > 0, "カードの保存に失敗しました");
 
             // 確認のため再取得
             var loadedCard = await DatabaseService.GetCardByIdAsync(newCard.CardId);
 
-            Assert.NotNull(loadedCard);
-            Assert.Equal(newCard.Content, loadedCard.Content);
+            Xunit.Assert.NotNull(loadedCard);
+            Xunit.Assert.Equal(newCard.Content, loadedCard.Content);
         }
 
 
@@ -70,8 +70,8 @@ namespace Zettelkasten.Service
 
             // Assert: 保存したカードがDBに存在するか確認
             var savedCard = await _database.Table<Card>().Where(c => c.Content == "Test Card").FirstOrDefaultAsync();
-            Assert.NotNull(savedCard);
-            Assert.Equal("Test Card", savedCard.Content);
+            Xunit.Assert.NotNull(savedCard);
+            Xunit.Assert.Equal("Test Card", savedCard.Content);
         }
 
         // カードの取得テスト
@@ -86,8 +86,8 @@ namespace Zettelkasten.Service
             var savedCard = await DatabaseService.GetCardAsync(newCard.CardId);
 
             // Assert: 取得したカードが正しいか確認
-            Assert.NotNull(savedCard);
-            Assert.Equal("Another Test Card", savedCard.Content);
+            Xunit.Assert.NotNull(savedCard);
+            Xunit.Assert.Equal("Another Test Card", savedCard.Content);
         }
 
         // 複数のカードを取得するテスト
@@ -102,7 +102,7 @@ namespace Zettelkasten.Service
             var cards = await DatabaseService.GetAllCardsAsync();
 
             // Assert: カードが2つ取得できているか確認
-            Assert.Equal(2, cards.Count);
+            Xunit.Assert.Equal(2, cards.Count);
         }
 
         // タグとカードの関係をテスト
@@ -125,7 +125,7 @@ namespace Zettelkasten.Service
 
             // Assert: 関連付けが正しく保存されているか確認
             var savedCardTag = await _database.Table<CardTag>().Where(ct => ct.CardId == newCard.CardId && ct.TagId == tag.TagId).FirstOrDefaultAsync();
-            Assert.NotNull(savedCardTag);
+            Xunit.Assert.NotNull(savedCardTag);
         }
     }
 
